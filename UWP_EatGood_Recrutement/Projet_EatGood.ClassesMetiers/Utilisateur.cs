@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Projet_EatGood_Recrutement.ClassesMetiers
+namespace Projet_EatGood_Recrutement.Classes
 {
     public class Utilisateur
     {

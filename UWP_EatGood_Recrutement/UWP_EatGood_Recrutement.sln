@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_EatGood_Recrutement.App", "Projet_EatGood_Recrutement.App\Projet_EatGood_Recrutement.App.csproj", "{946B1308-FF20-40ED-AB67-2D344F849EC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_EatGood.ClassesMetiers", "Projet_EatGood.ClassesMetiers\Projet_EatGood.ClassesMetiers.csproj", "{991465DE-80F4-45DE-A243-2E06B46E8EC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_EatGood_Recrutement.Classes", "Projet_EatGood.ClassesMetiers\Projet_EatGood_Recrutement.Classes.csproj", "{991465DE-80F4-45DE-A243-2E06B46E8EC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

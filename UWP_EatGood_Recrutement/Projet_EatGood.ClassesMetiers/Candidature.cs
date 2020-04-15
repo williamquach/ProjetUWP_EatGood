@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Projet_EatGood.ModelMetier
+namespace Projet_EatGood_Recrutement.Classes
 {
     public class Candidature
     {

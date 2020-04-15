@@ -69,8 +69,8 @@
                        Grid.Row="4" Margin="0,1,0,0" Grid.RowSpan="2"/>
 
             <Button x:Name="btnInscription" Content="Inscription" Grid.Row="5" Grid.ColumnSpan="2" 
-                    VerticalAlignment="Top" Width="216" Height="41" FontSize="20" Background="#FF80CE8F" BorderBrush="#FF7FC86E"
-                    BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="btnInscription_Click" Margin="230,0,0,0"/>
+                    VerticalAlignment="Bottom" Width="216" Height="41" FontSize="20" Background="#FF80CE8F" BorderBrush="#FF7FC86E"
+                    BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="btnInscription_Click" Margin="230,0,0,259"/>
         </Grid>
     </Grid>
 </Page>

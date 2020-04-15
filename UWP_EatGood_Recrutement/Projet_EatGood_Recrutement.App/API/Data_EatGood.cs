@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Projet_EatGood.ModelMetier;
+using Projet_EatGood_Recrutement.Classes;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace Projet_EatGood.API
+namespace Projet_EatGood_Recrutement.App.API
 {
     public class Data_EatGood
     {

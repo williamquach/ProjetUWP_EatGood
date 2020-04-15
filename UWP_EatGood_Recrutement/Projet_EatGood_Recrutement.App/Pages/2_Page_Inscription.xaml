@@ -33,6 +33,9 @@
                 <ColumnDefinition Width="95*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <!-- LIGNE 1 -->
+            <Button x:Name="BtnRetour" Content="&#xE72B;" Grid.Row="0" Grid.ColumnSpan="1" 
+                    VerticalAlignment="Top" Width="40" FontSize="14" Background="White" BorderBrush="#FF7FC86E"
+                    BorderThickness="0.5" FontFamily="Segoe MDL2 Assets" FontWeight="Black" Click="BtnRetour_Click" Margin="10,30,0,0" Height="28"/>
             <TextBlock Text="Inscription" FontSize="60" FontFamily="Century Gothic" FontWeight="Bold" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" 
                        Foreground="#FF80CE8F"  FocusVisualPrimaryBrush="#FF140606" Height="74" Margin="179,0,0,0" Width="318" />
 
@@ -75,10 +78,9 @@
                 VerticalAlignment="Top" TextAlignment="Center" Height="50" Width="95" Margin="0,11,0,0"/>
             <TextBox Grid.Row="5" PlaceholderText="Kremlin-Bicêtre..." FontSize="30" Height="60" Width="300" VerticalAlignment="Top"
                 HorizontalAlignment="Left"  Grid.Column="1" x:Name="txtVille" />
-
             <!-- LIGNE 7 -->
             <Button x:Name="BtnSinscrire" Content="S'inscrire" Grid.Row="6" Grid.ColumnSpan="2" 
-                    VerticalAlignment="Stretch" Width="216" FontSize="20" Background="#FF80CE8F" BorderBrush="#FF7FC86E"
+                    VerticalAlignment="Top" Width="216" FontSize="25" Background="#FF80CE8F" BorderBrush="#FF7FC86E"
                     BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="BtnSinscrire_Click" Margin="230,11,0,0" />
 
         </Grid>

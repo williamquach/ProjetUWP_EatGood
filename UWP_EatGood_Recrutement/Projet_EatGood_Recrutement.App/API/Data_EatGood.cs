@@ -41,7 +41,6 @@ namespace Projet_EatGood_Recrutement.App.API
                     PrenomUtilisateur = item["prenom"].Value.ToString(),
                     RoleUtilisateur = item["role"].Value.ToString(),
                     VilleCandidat = item["ville"].Value.ToString(),
-                    DescriptionCandidat = item["descriptionCandidat"].Value.ToString()
                 };
                 lesUtilisateurs.Add(unUser);
             }

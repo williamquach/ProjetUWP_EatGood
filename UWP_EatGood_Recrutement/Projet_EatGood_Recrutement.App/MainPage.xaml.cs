@@ -16,6 +16,7 @@ using Projet_EatGood_Recrutement.Classes;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Projet_EatGood_Recrutement.App.API;
+
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Projet_EatGood_Recrutement.App

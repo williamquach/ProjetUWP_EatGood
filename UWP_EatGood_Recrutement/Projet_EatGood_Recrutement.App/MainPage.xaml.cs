@@ -29,9 +29,11 @@ namespace Projet_EatGood_Recrutement.App
         public MainPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+
         }
         Data_EatGood lesDonnees;
-
+        Utilisateur lutilisateurActuel;
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             GetAllUsers();
@@ -40,7 +42,7 @@ namespace Projet_EatGood_Recrutement.App
         {
             lesDonnees = new Data_EatGood();
 
-            await lesDonnees.GetLesUtilisateurs();
+            await lesDonnees.ChargerLesDonnees();
         }
 
         private async void btnConnexion_Click(object sender, RoutedEventArgs e)
@@ -60,6 +62,7 @@ namespace Projet_EatGood_Recrutement.App
                     {
                         login = true;
                         mdp = true;
+                        lutilisateurActuel = u;
                         break;
                     }
                     else if (u.Login == txtLogin.Text && u.MotDePasse != txtMdp.Password)
@@ -80,8 +83,8 @@ namespace Projet_EatGood_Recrutement.App
                 }
                 else if (login && mdp)
                 {
-                    var yaMatch = new MessageDialog("Tout est bon");
-                    await yaMatch.ShowAsync();
+                    this.Frame.Navigate(typeof(Page_Accueil), lutilisateurActuel);
+
                 }
             }
         }

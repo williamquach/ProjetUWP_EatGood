@@ -126,8 +126,8 @@
     <Compile Include="Pages\2_Page_Inscription.xaml.cs">
       <DependentUpon>2_Page_Inscription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\BlankPage1.xaml.cs">
-      <DependentUpon>BlankPage1.xaml</DependentUpon>
+    <Compile Include="Pages\Candidat\Page_Accueil.xaml.cs">
+      <DependentUpon>Page_Accueil.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -138,6 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\1_image_connexion_fastfood.jpg" />
+    <Content Include="images\2_image_fastfood.jpg" />
+    <Content Include="images\3_image_fastfood.jpg" />
+    <Content Include="images\4_image_fastfood.jpg" />
+    <Content Include="images\5_image_fastfood.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -160,7 +164,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\BlankPage1.xaml">
+    <Page Include="Pages\Candidat\Page_Accueil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,7 +186,10 @@
       <Name>Projet_EatGood_Recrutement.Classes</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\Admin\" />
+    <Folder Include="Pages\Recruteur\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -83,7 +83,10 @@ namespace Projet_EatGood_Recrutement.App
                 }
                 else if (login && mdp)
                 {
-                    this.Frame.Navigate(typeof(Page_Accueil), lutilisateurActuel);
+                    object[] donneesAEnvoyer = new object[2];
+                    donneesAEnvoyer[0] = lutilisateurActuel;
+                    donneesAEnvoyer[1] = lesDonnees;
+                    this.Frame.Navigate(typeof(Page_Accueil), donneesAEnvoyer);
 
                 }
             }

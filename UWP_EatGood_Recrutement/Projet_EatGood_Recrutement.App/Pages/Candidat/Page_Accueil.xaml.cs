@@ -1,4 +1,5 @@
-﻿using Projet_EatGood_Recrutement.Classes;
+﻿using Projet_EatGood_Recrutement.App.API;
+using Projet_EatGood_Recrutement.Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,11 +29,16 @@ namespace Projet_EatGood_Recrutement.App.Pages
         {
             this.InitializeComponent();
         }
+        Utilisateur lutilisateurActuellement;
+        object[] donnesRecues;
+        Data_EatGood dataEatGood;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter is Utilisateur && e.Parameter != null)
+            if (e.Parameter != null)
             {
-                Utilisateur lutilisateurActuellement = e.Parameter as Utilisateur;
+                donnesRecues = (Object[])e.Parameter;
+                dataEatGood = donnesRecues[1] as Data_EatGood;
+                lutilisateurActuellement = donnesRecues[0] as Utilisateur;
                 txtBienvenue.Text = $"Bienvenue, {lutilisateurActuellement.PrenomUtilisateur}";
             }
             else
@@ -40,9 +47,18 @@ namespace Projet_EatGood_Recrutement.App.Pages
             }
             base.OnNavigatedTo(e);
         }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            List<Candidature> lesCandidaturesDuUser = await dataEatGood.GetLesCandidaturesByCandidat(lutilisateurActuellement.IdUtilisateur);
+            if (lesCandidaturesDuUser.Count == 0)
+            {
+                var message = new MessageDialog("Vous n'avez posté aucune candidature. Qu'attendez vous ?! ;)");
+                await message.ShowAsync();
+            } 
+            else
+            {
+                lvCandidaturesCandidat.ItemsSource = lesCandidaturesDuUser;
+            }
         }
 
         private void lvCandidaturesCandidat_SelectionChanged(object sender, SelectionChangedEventArgs e)

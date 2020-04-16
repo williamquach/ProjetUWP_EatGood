@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Projet_EatGood_Recrutement.Classes;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace Projet_EatGood_Recrutement.App.API
 {
@@ -100,28 +101,79 @@ namespace Projet_EatGood_Recrutement.App.API
             }
         }
 
-        public async Task GetLesCandidaturesByCandidat(int idCandidat)
+        public async Task<List<Candidature>> GetLesCandidaturesByCandidat(int idCandidat)
         {
-            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getAllCandidatures.php?action=getCandidatures&idCandidat=" + idCandidat);
+            List<Candidature> lesCandids = new List<Candidature>();
+            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getCandidaturesByCandidat.php?action=getCandidatures&idCandidat=" + idCandidat);
             var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
             var list = donnees["results"]["candidatures"];
-            foreach (var item in list)
+            if (list != null)
             {
-                Candidature uneCandidature = new Candidature()
+                foreach (var item in list)
                 {
-                    IdCandidature = Convert.ToInt32(item["idU"].Value.ToString()),
-                    MessageMotivations = item["libelle"].Value.ToString(),
-                    StatutMessage = item["motDePasse"].Value.ToString(),
-                    MessageReponse = item["nom"].Value.ToString()
-                    //LeCandidat = ,
-                    //LePosteVoulu = ,
-                    //LeResto =
-                };
+                    Restaurant leResto = GetUnRestoById(Convert.ToInt32(item["codeRestaurant"].Value.ToString()));
+                    Poste lePoste = GetUnPosteById(Convert.ToInt32(item["codePoste"].Value.ToString()));
+                    Utilisateur lUtilisateur = GetUnUtilisateurById(Convert.ToInt32(item["codeCandidat"].Value.ToString()));
+                    Candidature uneCandidature = new Candidature()
+                    {
+                        IdCandidature = Convert.ToInt32(item["idC"].Value.ToString()),
+                        MessageMotivations = item["messageMotivations"].Value.ToString(),
+                        StatutMessage = item["statut"].Value.ToString(),
+                        LeCandidat = lUtilisateur,
+                        LePosteVoulu = lePoste,
+                        LeResto = leResto
+                    };
+                    if (item["messageReponse"].Value != null)
+                    {
+                        uneCandidature.MessageReponse = item["messageReponse"].Value.ToString();
+                    }
 
-                lesCandidatures.Add(uneCandidature);
+                    lesCandids.Add(uneCandidature);
+                }
             }
+            return lesCandids;
+
         }
 
+        public Restaurant GetUnRestoById(int idResto)
+        {
+            Restaurant leResto = new Restaurant();
+            foreach(Restaurant r in lesResto)
+            {
+                if(r.IdResto == idResto)
+                {
+                    leResto = r;
+                    break;
+                }
+            }
+            return leResto;
+        }
+        public Poste GetUnPosteById(int idPoste)
+        {
+            Poste lePoste = new Poste();
+            foreach (Poste p in lesPostes)
+            {
+                if (p.IdPoste == idPoste)
+                {
+                    lePoste = p;
+                    break;
+                }
+            }
+            return lePoste;
+        }
+        public Utilisateur GetUnUtilisateurById(int idUtilisateur)
+        {
+            Utilisateur lUtilisateur = new Utilisateur();
+            foreach (Utilisateur u in lesUtilisateurs)
+            {
+                if (u.IdUtilisateur == idUtilisateur)
+                {
+                    lUtilisateur = u;
+                    break;
+                }
+            }
+            return lUtilisateur;
+        }
 
     }
 }

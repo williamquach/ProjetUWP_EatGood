@@ -23,12 +23,14 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border Background="#FFD5FFCB" Grid.Column="0" Grid.ColumnSpan="2"></Border>
             <Image Grid.Column="0" x:Name="img_fastFood_accueil" Source="../../images/5_image_fastfood.jpg"></Image>
             <TextBlock Grid.Column="1" Text="Bienvenue..." VerticalAlignment="Center" HorizontalAlignment="Center" 
                        Foreground="#0f2459" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
                        FontSize="30" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
+            <Image Grid.Column="2" x:Name="img_fastFood_accueil_2" Source="../../images/2_image_fastfood.jpg"></Image>
 
         </Grid>
 
@@ -38,21 +40,25 @@
                 <ColumnDefinition Width="300"></ColumnDefinition>
                 <ColumnDefinition Width="300"></ColumnDefinition>
                 <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <!--<Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="0" Background="#FF9D99D7"></Border>
             <Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="1" Background="#FFDDAC7B"></Border>
             <Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="2" Background="#FFEE9696"></Border>-->
-            <Button Grid.Column="0" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
+            <Button Grid.Column="0" x:Name="BtnAccueil" Content="Accueil" HorizontalAlignment="Center" BorderBrush="Black"
+                    Foreground="#0f2459" Background="#FF76F7F9" Click="BtnAccueil_Click" VerticalAlignment="Center" BorderThickness="0.8"
+                    FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+            <Button Grid.Column="1" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
                     Foreground="#0f2459" Background="#FF9D99D7" Click="BtnProfil_Click" VerticalAlignment="Center" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
-            <Button Grid.Column="1" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
+            <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
                     Foreground="#0f2459" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
-            <Button Grid.Column="2" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
+            <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
                     Foreground="#0f2459" Background="#FFEE9696" Click="BtnNvelleCandidature_Click" BorderBrush="Black" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
-            <Button Grid.Column="3" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
+            <Button Grid.Column="4" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
                     Foreground="#0f2459" Background="#FFCAB6B6" Click="BtnDeconnexion_Click" BorderBrush="Black"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300" />
         </Grid>
@@ -60,21 +66,43 @@
         <Grid x:Name="grd_TroisiemeLigne" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Border Background="AliceBlue"></Border>
             <TextBlock Text="Liste de mes candidatures :" HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="#0F2459">
             </TextBlock>
-            <ListView x:Name="lvCandidaturesCandidat" Grid.Row="1" SelectionChanged="lvCandidaturesCandidat_SelectionChanged">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                <TextBlock Grid.Column="1" Text="Poste :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                <TextBlock Grid.Column="2" Text="Motivations :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                <TextBlock Grid.Column="3" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                <TextBlock Grid.Column="4" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+            </Grid>
+            
+            <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" SelectionChanged="lvCandidaturesCandidat_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="{Binding LeResto.LibelleResto}" Width="200"></TextBlock>
-                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="200"></TextBlock>
-                            <TextBlock Text="{Binding MessageMotivations}" Width="200"></TextBlock>
-                            <TextBlock Text="{Binding StatutMessage}" Width="200"></TextBlock>
-                            <TextBlock Text="{Binding MessageReponse}" Width="200"></TextBlock>
+                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="300" TextAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding MessageMotivations}" Width="500" TextAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding StatutMessage}" Width="150" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Center"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

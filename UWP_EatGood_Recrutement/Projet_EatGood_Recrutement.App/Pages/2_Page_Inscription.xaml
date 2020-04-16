@@ -17,7 +17,7 @@
             <ColumnDefinition Width="206*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Image Grid.Column="1" x:Name="img_fastfood_connexion" Source="../images/1_image_connexion_fastfood.jpg"></Image>
-        <Border Background="#FFF5B657"></Border>
+        <Border Background="#0f2459"></Border>
         <Grid x:Name="grd_2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="199"></RowDefinition>
@@ -37,14 +37,14 @@
                     VerticalAlignment="Top" Width="40" FontSize="14" Background="White" BorderBrush="#FF7FC86E"
                     BorderThickness="0.5" FontFamily="Segoe MDL2 Assets" FontWeight="Black" Click="BtnRetour_Click" Margin="10,30,0,0" Height="28"/>
             <TextBlock Text="Inscription" FontSize="60" FontFamily="Century Gothic" FontWeight="Bold" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" 
-                       Foreground="#FF80CE8F"  FocusVisualPrimaryBrush="#FF140606" Height="74" Margin="179,0,0,0" Width="318" />
+                       Foreground="#5de29c"  FocusVisualPrimaryBrush="#FF140606" Height="74" Margin="179,0,0,0" Width="318" />
 
             <TextBlock Text="Veuillez remplir le formulaire suivant :" HorizontalAlignment="Left" 
-                       FontSize="30" FontFamily="Century Gothic" TextAlignment="Center" 
+                       FontSize="30" FontFamily="Century Gothic" TextAlignment="Center"  Foreground="White"
                        VerticalAlignment="Bottom" TextDecorations="Underline" Height="37" Width="530" Grid.ColumnSpan="2" Grid.Row="0"/>
             <!-- LIGNE 2 -->
             <TextBlock Text="Nom :" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"
-                       FontSize="30" FontFamily="Century Gothic"
+                       FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Bottom" TextAlignment="Center" Height="50" Width="87" Margin="0,0,0,21">
             </TextBlock>
             <TextBox Grid.Row="1" PlaceholderText="Withers..." FontSize="30" Height="60" Width="300" VerticalAlignment="Bottom"
@@ -52,21 +52,21 @@
 
             <!-- LIGNE 3 -->
             <TextBlock Text="Prénom :" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"
-                       FontSize="30" FontFamily="Century Gothic"
+                       FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Top" TextAlignment="Center" Height="50" Width="129" Margin="0,11,0,0">
             </TextBlock>
             <TextBox Grid.Row="2" PlaceholderText="Bill..." FontSize="30" Height="60" Width="300" VerticalAlignment="Top"
                      HorizontalAlignment="Left"  Grid.Column="1" x:Name="txtPrenom"/>
             <!-- LIGNE 4 -->
             <TextBlock Text="Login :" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"
-                       FontSize="30" FontFamily="Century Gothic"
+                       FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Top" TextAlignment="Center" Height="50" Width="95" Margin="0,11,0,0">
             </TextBlock>
             <TextBox Grid.Row="3" PlaceholderText="bwithers..." FontSize="30" Height="60" Width="300" VerticalAlignment="Top"
                      HorizontalAlignment="Left"  Grid.Column="1" x:Name="txtLogin"/>
 
             <!-- LIGNE 5 -->
-            <TextBlock Text="Mot de passe :" Grid.Row="4" HorizontalAlignment="Right"
+            <TextBlock Text="Mot de passe :" Grid.Row="4" HorizontalAlignment="Right" Foreground="White"
                        FontSize="30" FontFamily="Century Gothic" TextAlignment="Center" VerticalAlignment="Top" Height="50" Margin="0,11,0,0" Width="214">
             </TextBlock>
             <PasswordBox Grid.Row="4" PlaceholderText="***********" FontSize="30" Height="60" Width="300" VerticalAlignment="Top"
@@ -74,13 +74,13 @@
             <!-- LIGNE 6 -->
 
             <TextBlock Text="Ville :" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right"
-                FontSize="30" FontFamily="Century Gothic"
+                FontSize="30" FontFamily="Century Gothic" Foreground="White"
                 VerticalAlignment="Top" TextAlignment="Center" Height="50" Width="95" Margin="0,11,0,0"/>
             <TextBox Grid.Row="5" PlaceholderText="Kremlin-Bicêtre..." FontSize="30" Height="60" Width="300" VerticalAlignment="Top"
                 HorizontalAlignment="Left"  Grid.Column="1" x:Name="txtVille" />
             <!-- LIGNE 7 -->
             <Button x:Name="BtnSinscrire" Content="S'inscrire" Grid.Row="6" Grid.ColumnSpan="2" 
-                    VerticalAlignment="Top" Width="216" FontSize="25" Background="#FF80CE8F" BorderBrush="#FF7FC86E"
+                    VerticalAlignment="Top" Width="216" FontSize="25" Background="#5de29c" BorderBrush="#FF7FC86E"
                     BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="BtnSinscrire_Click" Margin="230,11,0,0" />
 
         </Grid>

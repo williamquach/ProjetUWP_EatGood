@@ -86,7 +86,20 @@ namespace Projet_EatGood_Recrutement.App
                     object[] donneesAEnvoyer = new object[2];
                     donneesAEnvoyer[0] = lutilisateurActuel;
                     donneesAEnvoyer[1] = lesDonnees;
-                    this.Frame.Navigate(typeof(Page_Accueil), donneesAEnvoyer);
+                    if (lutilisateurActuel.RoleUtilisateur == "candidat")
+                    {
+                        this.Frame.Navigate(typeof(Page_Accueil), donneesAEnvoyer);
+                    }
+                    else if (lutilisateurActuel.RoleUtilisateur == "recruteur")
+                    {
+                        var message = new MessageDialog("Vous êtes recruteur.");
+                        await message.ShowAsync();
+                    }
+                    else if (lutilisateurActuel.RoleUtilisateur == "admin")
+                    {
+                        var message = new MessageDialog("Vous êtes admin.");
+                        await message.ShowAsync();
+                    }
 
                 }
             }

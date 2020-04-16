@@ -1,4 +1,5 @@
 ﻿using Projet_EatGood_Recrutement.App.API;
+using Projet_EatGood_Recrutement.App.Pages.Candidat;
 using Projet_EatGood_Recrutement.Classes;
 using System;
 using System.Collections.Generic;
@@ -39,11 +40,11 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 donnesRecues = (Object[])e.Parameter;
                 dataEatGood = donnesRecues[1] as Data_EatGood;
                 lutilisateurActuellement = donnesRecues[0] as Utilisateur;
-                txtBienvenue.Text = $"Bienvenue, {lutilisateurActuellement.PrenomUtilisateur}";
+                txtBienvenue.Text = $"Bienvenue {lutilisateurActuellement.PrenomUtilisateur} {lutilisateurActuellement.NomUtilisateur}";
             }
             else
             {
-                txtBienvenue.Text = $"Bienvenue !";
+                txtBienvenue.Text = $"Bienvenue ! ";
             }
             base.OnNavigatedTo(e);
         }
@@ -68,6 +69,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
 
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(Page_Profil), lutilisateurActuellement);
 
         }
 
@@ -85,6 +87,11 @@ namespace Projet_EatGood_Recrutement.App.Pages
         {
 
             this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void BtnAccueil_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Page_Accueil), lutilisateurActuellement);
         }
     }
 }

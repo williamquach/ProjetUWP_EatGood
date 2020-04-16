@@ -129,6 +129,9 @@
     <Compile Include="Pages\Candidat\Page_Accueil.xaml.cs">
       <DependentUpon>Page_Accueil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Candidat\Page_Profil.xaml.cs">
+      <DependentUpon>Page_Profil.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Candidat\Page_Accueil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Candidat\Page_Profil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

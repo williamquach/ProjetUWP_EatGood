@@ -86,13 +86,13 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 var resultat = donnees["Success"];
                 if (resultat == "false")
                 {
-                    var message = new MessageDialog("L'utilisateur " + txtLogin + " existe déjà.");
+                    var message = new MessageDialog("L'utilisateur " + txtLogin.Text + " existe déjà.");
                     await message.ShowAsync();
                     txtLogin.Text = "";
                 }
                 else
                 {
-                    var message = new MessageDialog("Utilisateur "+ txtLogin +" est inscrit.");
+                    var message = new MessageDialog("Utilisateur "+ txtLogin.Text +" est inscrit.");
                     await message.ShowAsync();
                     txtNom.Text = "";
                     txtPrenom.Text = "";

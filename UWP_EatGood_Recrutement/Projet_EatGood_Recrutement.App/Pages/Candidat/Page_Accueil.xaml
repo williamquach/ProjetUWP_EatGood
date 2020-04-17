@@ -79,7 +79,7 @@
                     <ColumnDefinition Width="300"></ColumnDefinition>
                     <ColumnDefinition Width="500"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Background="#5de29c" Grid.ColumnSpan="5"></Border>
                 <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
@@ -97,15 +97,16 @@
                        FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
                        Margin="0,50,0,0" Grid.Row="2" x:Name="txtYaTilDesCandidatures"></TextBlock>
 
-            <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" SelectionChanged="lvCandidaturesCandidat_SelectionChanged" Background="#0f2459" Visibility="Visible">
+            <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" SelectionChanged="lvCandidaturesCandidat_SelectionChanged" 
+                      Tapped="lvCandidaturesCandidat_Tapped" Background="#0f2459" Visibility="Visible">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="{Binding LeResto.LibelleResto}" Width="300" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="300" TextAlignment="Center" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding MessageMotivations}" Width="500" TextAlignment="Center" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding StatutMessage}" Width="150" TextAlignment="Center" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Center" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock  Text="{Binding LeResto.LibelleResto}" Width="300" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="300" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding MessageMotivations}" Width="500" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding StatutMessage}" Width="150" TextAlignment="Justify" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

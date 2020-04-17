@@ -62,9 +62,45 @@ namespace Projet_EatGood_Recrutement.App.Pages
             }
         }
 
-        private void lvCandidaturesCandidat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void lvCandidaturesCandidat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (lvCandidaturesCandidat.SelectedItem != null)
+            {
+                Candidature laCandidatureChoisie = lvCandidaturesCandidat.SelectedItem as Candidature;
+                if (laCandidatureChoisie.StatutMessage == "En attente")
+                {
+                    var message = new MessageDialog("Cette candidature est encore en attente, le recruteur du restaurant "
+                                                    + laCandidatureChoisie.LeResto.LibelleResto + " n'a pas encore examiné votre candidature.");
+                    await message.ShowAsync();
+                }
+                else if (laCandidatureChoisie.StatutMessage == "En cours")
+                {
+                    var message = new MessageDialog("Cette candidature est encore en cours d'examen, le recruteur du restaurant "
+                                                    + laCandidatureChoisie.LeResto.LibelleResto + " est entrain de l'étudier.");
+                    await message.ShowAsync();
+                }
+                else if (laCandidatureChoisie.StatutMessage == "Refusée")
+                {
+                    var message = new MessageDialog(laCandidatureChoisie.MessageReponse);
+                    await message.ShowAsync();
+                    //Bonjour,
+                    //Nous vous remercions d'avoir postulé au poste STAGE - Développement Logiciel Applicatif de Monitoring Hardware F/H. Après un examen attentif de votre candidature, nous regrettons de vous informer qu'elle n'a pas été sélectionnée pour ce poste.
+                    //Nous pourrons vous contacter pour de futures opportunités et vous encourageons à nous rejoindre sur les réseaux sociaux.
+                    //Nous vous remercions de votre intérêt pour Thales et vous souhaitons le meilleur dans votre carrière.
+                    //Meilleures salutations,
+                    //L'équipe Ressources Humaines Thales
+                }
+                else if (laCandidatureChoisie.StatutMessage == "En attente d'entretien")
+                {
+                    var message = new MessageDialog(laCandidatureChoisie.MessageReponse);
+                    await message.ShowAsync();
+                }
+            }
+            else
+            {
+                var message = new MessageDialog("Veuillez sélectionner une candidature");
+                await message.ShowAsync();
+            }
         }
 
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
@@ -93,6 +129,47 @@ namespace Projet_EatGood_Recrutement.App.Pages
         private void BtnAccueil_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
+        }
+
+        private async void lvCandidaturesCandidat_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (lvCandidaturesCandidat.SelectedItem != null)
+            {
+                Candidature laCandidatureChoisie = lvCandidaturesCandidat.SelectedItem as Candidature;
+                if (laCandidatureChoisie.StatutMessage == "En attente")
+                {
+                    var message = new MessageDialog("Cette candidature est encore en attente, le recruteur du restaurant "
+                                                    + laCandidatureChoisie.LeResto.LibelleResto + " n'a pas encore examiné votre candidature.");
+                    await message.ShowAsync();
+                }
+                else if (laCandidatureChoisie.StatutMessage == "En cours")
+                {
+                    var message = new MessageDialog("Cette candidature est encore en cours d'examen, le recruteur du restaurant "
+                                                    + laCandidatureChoisie.LeResto.LibelleResto + " est entrain de l'étudier.");
+                    await message.ShowAsync();
+                }
+                else if (laCandidatureChoisie.StatutMessage == "Refusée")
+                {
+                    var message = new MessageDialog(laCandidatureChoisie.MessageReponse);
+                    await message.ShowAsync();
+                    //Bonjour,
+                    //Nous vous remercions d'avoir postulé au poste STAGE - Développement Logiciel Applicatif de Monitoring Hardware F/H. Après un examen attentif de votre candidature, nous regrettons de vous informer qu'elle n'a pas été sélectionnée pour ce poste.
+                    //Nous pourrons vous contacter pour de futures opportunités et vous encourageons à nous rejoindre sur les réseaux sociaux.
+                    //Nous vous remercions de votre intérêt pour Thales et vous souhaitons le meilleur dans votre carrière.
+                    //Meilleures salutations,
+                    //L'équipe Ressources Humaines Thales
+                }
+                else if (laCandidatureChoisie.StatutMessage == "En attente d'entretien")
+                {
+                    var message = new MessageDialog(laCandidatureChoisie.MessageReponse);
+                    await message.ShowAsync();
+                }
+            }
+            else
+            {
+                var message = new MessageDialog("Veuillez sélectionner une candidature");
+                await message.ShowAsync();
+            }
         }
     }
 }

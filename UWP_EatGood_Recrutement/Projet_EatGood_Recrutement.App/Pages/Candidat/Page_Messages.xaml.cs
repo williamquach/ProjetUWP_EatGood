@@ -51,9 +51,13 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
             base.OnNavigatedTo(e);
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             hc = new HttpClient();
+            ChargerLesMessages();
+        }
+        public async void ChargerLesMessages()
+        {
             List<Message> lesMessageDuUser = await lesDonnees.GetLesMessagesDuCandidat(lutilisateurActuellement.IdUtilisateur);
             if (lesMessageDuUser.Count == 0)
             {
@@ -98,6 +102,34 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
         private void lvMessagesDuCandidat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private async void lvMessagesDuCandidat_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (lvMessagesDuCandidat.SelectedItem != null)
+            {
+                Message leMessageSelectionne = lvMessagesDuCandidat.SelectedItem as Message;
+                int idMsg = leMessageSelectionne.IdMessage;
+                int idCandidat = leMessageSelectionne.LeDestinataire.IdUtilisateur;
+                int idResto = leMessageSelectionne.LExpediteur.IdResto;
+                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/updateStatutMessage.php?" +
+                                                      "action=updateEtatMessage" +
+                                                      "&idMessage=" + idMsg + 
+                                                      "&idCandidat=" + idCandidat +
+                                                      "&idResto=" + idResto);
+                var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
+                var list = donnees["Success"];
+                if(list == "false")
+                {
+                    var message = new MessageDialog("Erreur le message n'existe pas");
+                    await message.ShowAsync(); ;
+                }
+                else if (list == "true")
+                {
+                    ChargerLesMessages();
+                }
+                //
+            }
         }
     }
 }

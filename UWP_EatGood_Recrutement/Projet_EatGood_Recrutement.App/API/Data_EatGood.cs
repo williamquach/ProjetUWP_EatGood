@@ -158,13 +158,15 @@ namespace Projet_EatGood_Recrutement.App.API
             {
                 foreach (var item in list)
                 {
+                    Utilisateur lUtilisateur = GetUnUtilisateurById(Convert.ToInt32(item["codeCandidat"].Value.ToString()));
                     Restaurant leResto = GetUnRestoById(Convert.ToInt32(item["codeRestaurant"].Value.ToString()));
                     Message unMessage = new Message()
                     {
                         IdMessage = Convert.ToInt32(item["idM"].Value.ToString()),
                         ContenuMessage = item["message"].Value.ToString(),
                         LExpediteur = leResto,
-                        StatutMessage = item["statutMsg"].Value.ToString()
+                        StatutMessage = item["statutMsg"].Value.ToString(),
+                        LeDestinataire = lUtilisateur
                     };
 
                     lesMessages.Add(unMessage);
@@ -172,7 +174,6 @@ namespace Projet_EatGood_Recrutement.App.API
             }
             return lesMessages;
         }
-
         public Restaurant GetUnRestoById(int idResto)
         {
             Restaurant leResto = new Restaurant();

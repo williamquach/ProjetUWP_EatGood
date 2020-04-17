@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -31,15 +32,14 @@ namespace Projet_EatGood_Recrutement.App.Pages
             this.InitializeComponent();
         }
         Utilisateur lutilisateurActuellement;
-        object[] donnesRecues;
-        Data_EatGood dataEatGood;
+        Data_EatGood lesDonnees;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            GetAllUsers();
+
             if (e.Parameter != null)
             {
-                donnesRecues = (Object[])e.Parameter;
-                dataEatGood = donnesRecues[1] as Data_EatGood;
-                lutilisateurActuellement = donnesRecues[0] as Utilisateur;
+                lutilisateurActuellement = e.Parameter as Utilisateur;
                 txtBienvenue.Text = $"Bienvenue {lutilisateurActuellement.PrenomUtilisateur} {lutilisateurActuellement.NomUtilisateur}";
             }
             else
@@ -47,10 +47,17 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 txtBienvenue.Text = $"Bienvenue ! ";
             }
             base.OnNavigatedTo(e);
+
+        }
+        public async void GetAllUsers()
+        {
+            lesDonnees = new Data_EatGood();
+
+            await lesDonnees.ChargerLesDonnees();
         }
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Candidature> lesCandidaturesDuUser = await dataEatGood.GetLesCandidaturesByCandidat(lutilisateurActuellement.IdUtilisateur);
+            List<Candidature> lesCandidaturesDuUser = await lesDonnees.GetLesCandidaturesByCandidat(lutilisateurActuellement.IdUtilisateur);
             if (lesCandidaturesDuUser.Count == 0)
             {
                 var message = new MessageDialog("Vous n'avez posté aucune candidature. Qu'attendez vous ?! ;)");

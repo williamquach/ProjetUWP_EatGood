@@ -83,22 +83,22 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                           HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
                 <TextBlock Grid.Column="1" Text="Poste :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                           HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
                 <TextBlock Grid.Column="2" Text="Motivations :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                           HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
                 <TextBlock Grid.Column="3" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                           HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
                 <TextBlock Grid.Column="4" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                           HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
             </Grid>
             
             <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" SelectionChanged="lvCandidaturesCandidat_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="{Binding LeResto.LibelleResto}" Width="200"></TextBlock>
+                            <TextBlock Text="{Binding LeResto.LibelleResto}" Width="300"></TextBlock>
                             <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="300" TextAlignment="Center"></TextBlock>
                             <TextBlock Text="{Binding MessageMotivations}" Width="500" TextAlignment="Center"></TextBlock>
                             <TextBlock Text="{Binding StatutMessage}" Width="150" TextAlignment="Center" FontWeight="Bold"></TextBlock>

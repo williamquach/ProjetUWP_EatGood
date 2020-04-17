@@ -90,7 +90,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
 
         private void BtnNvelleCandidature_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(Page_NouvelleCandidature), lesDonnees);
         }
 
         private void BtnDeconnexion_Click(object sender, RoutedEventArgs e)

@@ -54,7 +54,7 @@
                         FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
                         Foreground="#FFF" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
-                        FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+                        FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
             <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
                         Foreground="#0f2459" Background="#FFEE9696" Click="BtnNvelleCandidature_Click" BorderBrush="Black" BorderThickness="0.8"
                         FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
@@ -91,9 +91,10 @@
                 <TextBlock Grid.Column="2" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                                HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
             </Grid>
-            <TextBlock Text="Vous n'avez aucun message :(" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"
+            <Border Grid.Row="2" Background="#0f2459" Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
+            <TextBlock Text="Vous n'avez aucun message :(" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
                            FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
-                           Margin="263,50,0,0" Grid.Row="2" x:Name="txtYatilDesMessages" Grid.Column="1"></TextBlock>
+                           Grid.Row="2" x:Name="txtYatilDesMessages" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,30,0,0"></TextBlock>
 
             <ListView x:Name="lvMessagesDuCandidat" Grid.Row="1"  Tapped="lvMessagesDuCandidat_Tapped"
                       SelectionChanged="lvMessagesDuCandidat_SelectionChanged" 

@@ -14,7 +14,7 @@ namespace Projet_EatGood_Recrutement.App.API
     {
         public Utilisateur LUtilisateurDeMaintenant { get; set; }
         public List<Utilisateur> lesUtilisateurs { get; set; }
-        public List<Candidature> lesCandidatures { get; set; }
+        public List<Candidature> lesCandidaturesDuCandidatActuel { get; set; }
         public List<Restaurant> lesResto { get; set; }
         public List<Poste> lesPostes { get; set; }
 
@@ -23,10 +23,6 @@ namespace Projet_EatGood_Recrutement.App.API
 
         public Data_EatGood()
         {
-            lesUtilisateurs = new List<Utilisateur>();
-            lesCandidatures = new List<Candidature>();
-            lesPostes = new List<Poste>();
-            lesResto = new List<Restaurant>();
             hc = new HttpClient();
             hc2 = new HttpClient();
             appelFonctionCharger();
@@ -52,6 +48,8 @@ namespace Projet_EatGood_Recrutement.App.API
         }
         public async Task GetLesPostes()
         {
+            lesPostes = new List<Poste>();
+
             var reponse = await hc2.GetStringAsync("http://localhost/recru_eatgood_api/getAllPostes.php");
             var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
             var list = donnees["results"]["postes"];
@@ -67,6 +65,8 @@ namespace Projet_EatGood_Recrutement.App.API
         }
         public async Task GetLesResto()
         {
+            lesResto = new List<Restaurant>();
+
             var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getAllRestaurants.php");
             var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
             var list = donnees["results"]["restaurants"];
@@ -88,6 +88,7 @@ namespace Projet_EatGood_Recrutement.App.API
 
         public async Task GetLesUtilisateurs()
         {
+            lesUtilisateurs = new List<Utilisateur>();
             // récupération des utilisateurs
             var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getAllUtilisateurs.php");
             var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
@@ -114,7 +115,7 @@ namespace Projet_EatGood_Recrutement.App.API
 
         public async Task<List<Candidature>> GetLesCandidaturesByCandidat(int idCandidat)
         {
-            List<Candidature> lesCandids = new List<Candidature>();
+            List<Candidature> lesCandidatures = new List<Candidature>();
             var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getCandidaturesByCandidat.php?action=getCandidatures&idCandidat=" + idCandidat);
             var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
             var list = donnees["results"]["candidatures"];
@@ -139,11 +140,10 @@ namespace Projet_EatGood_Recrutement.App.API
                         uneCandidature.MessageReponse = item["messageReponse"].Value.ToString();
                     }
 
-                    lesCandids.Add(uneCandidature);
+                    lesCandidatures.Add(uneCandidature);
                 }
             }
-            return lesCandids;
-
+            return lesCandidatures;
         }
 
         public async Task<List<Message>> GetLesMessagesDuCandidat(int idCandidat)
@@ -213,6 +213,14 @@ namespace Projet_EatGood_Recrutement.App.API
             }
             return lUtilisateur;
         }
-
+        public List<string> GetLesNomResto()
+        {
+            List<string> lesRestoLibelles = new List<string>();
+            foreach (Restaurant r in lesResto)
+            {
+                lesRestoLibelles.Add(r.LibelleResto);
+            }
+            return lesRestoLibelles;
+        }
     }
 }

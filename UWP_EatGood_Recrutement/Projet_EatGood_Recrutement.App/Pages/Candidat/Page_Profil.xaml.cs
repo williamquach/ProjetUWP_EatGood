@@ -110,7 +110,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                     lutilisateurActuellement.NomUtilisateur = txtNom.Text;
                     lutilisateurActuellement.PrenomUtilisateur = txtPrenom.Text;
                     lutilisateurActuellement.MotDePasse = txtMdp.Password;
-                    lutilisateurActuellement.VilleCandidat = txtMdp.Password;
+                    lutilisateurActuellement.VilleCandidat = txtVille.Text;
                     lesDonnees.LUtilisateurDeMaintenant = lutilisateurActuellement;
                     var message = new MessageDialog("Votre profil a bien été mis à jour");
                     await message.ShowAsync();
@@ -174,6 +174,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
 
         private void BtnNvelleCandidature_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(Page_NouvelleCandidature), lesDonnees);
 
         }
 

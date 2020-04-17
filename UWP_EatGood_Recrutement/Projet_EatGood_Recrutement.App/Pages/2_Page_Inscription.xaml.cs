@@ -66,7 +66,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
             else
             {
                 // localhost/recru_eatgood_api/index.php?action=sinscrire&nom={NOM}&prenom={PRENOM}&login={LOGIN}&motdepasse={PASSWORD}&ville={ville}
-                // récupération des utilisateurs
+                // récupération des données utilisateurs
                 string nom = txtNom.Text;
                 string prenom = txtPrenom.Text;
                 string login = txtLogin.Text;

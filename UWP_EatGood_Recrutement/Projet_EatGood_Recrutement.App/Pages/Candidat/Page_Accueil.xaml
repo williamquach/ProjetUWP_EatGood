@@ -93,6 +93,8 @@
                 <TextBlock Grid.Column="4" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
             </Grid>
+            <Border Grid.Row="2" Background="#0f2459" Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
+
             <TextBlock Text="Vous n'avez pas encore émis de candidature. Qu'attendez-vous ? ;)" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
                        FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
                        Margin="0,50,0,0" Grid.Row="2" x:Name="txtYaTilDesCandidatures"></TextBlock>
@@ -101,11 +103,11 @@
                       Tapped="lvCandidaturesCandidat_Tapped" Background="#0f2459" Visibility="Visible">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock  Text="{Binding LeResto.LibelleResto}" Width="300" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="300" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding MessageMotivations}" Width="500" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding StatutMessage}" Width="150" TextAlignment="Justify" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                        <StackPanel Orientation="Horizontal"  Spacing="20">
+                            <TextBlock  Text="{Binding LeResto.LibelleResto}" Width="280" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="280" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding MessageMotivations}" Width="480" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding StatutMessage}" Width="130" TextAlignment="Justify" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"></TextBlock>
                             <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
                         </StackPanel>
                     </DataTemplate>

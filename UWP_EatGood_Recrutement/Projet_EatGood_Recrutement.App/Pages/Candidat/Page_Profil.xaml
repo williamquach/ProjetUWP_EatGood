@@ -25,11 +25,11 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Border Background="#FFD5FFCB" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"></Border>
+            <Border Background="#5de29c" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"></Border>
             <Image Grid.Column="0" x:Name="img_fastFood_accueil" Source="../../images/5_image_fastfood.jpg"></Image>
             <TextBlock Grid.Column="1" Text="Bienvenue sur votre profil " VerticalAlignment="Center" HorizontalAlignment="Center" 
-                       Foreground="#0f2459" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
-                       FontSize="30" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
+                       Foreground="Black" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
+                       FontSize="50" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
             <Image Grid.Column="2" x:Name="img_fastFood_accueil_2" Source="../../images/2_image_fastfood.jpg"></Image>
 
         </Grid>
@@ -62,7 +62,7 @@
         <!-- 3e ligne : Toutes les candidatures -->
         <Grid x:Name="grd_TroisiemeLigne" Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="90"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
@@ -70,39 +70,38 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="493*"></ColumnDefinition>
+                <ColumnDefinition Width="650"></ColumnDefinition>
+                <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="142*"/>
-                <ColumnDefinition Width="92.8"></ColumnDefinition>
-                <ColumnDefinition Width="772*"/>
             </Grid.ColumnDefinitions>
-            <Border Background="#0f2459" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"></Border>
-            <Border Background="#0f2459" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="5"></Border>
-            <TextBlock Text="Modifier mon profil :" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"
-                       FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Height="49" Margin="65,0,0,0" Width="384" Grid.ColumnSpan="3" Grid.Column="1"/>
+            <Border Background="#0f2459" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Width="Auto"></Border>
+            <Border Background="#0f2459" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="5"></Border>
+            <TextBlock Text="Modifier mon profil :" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"
+                       FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="0"/>
 
             <!--Formulaire-->
-            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="148,0,0,0" >
+            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="148,0,0,0" >
                 <TextBlock Text="Nom :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
                 <TextBox x:Name="txtNom"  PlaceholderText="Nouveau nom"
                      FontSize="30" Height="60" Width="400" VerticalAlignment="center"
                      HorizontalAlignment="Center"></TextBox>
             </StackPanel>
-            <StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="105,1,0,70" Grid.RowSpan="2" >
+            <StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="105,1,0,70" Grid.RowSpan="2" >
                 <TextBlock Text="Prénom :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
                 <TextBox x:Name="txtPrenom"  PlaceholderText="Nouveau prénom"
                      FontSize="30" Height="60" Width="400" VerticalAlignment="center"
                      HorizontalAlignment="Center"></TextBox>
             </StackPanel>
-            <StackPanel Grid.Row="3" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="21,0,0,0" >
+            <StackPanel Grid.Row="3" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="21,0,0,0" >
                 <TextBlock Text="Mot de passe :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
                 <PasswordBox x:Name="txtMdp"  PlaceholderText="Nouveau mot de passe" 
                      FontSize="30" Height="60" Width="400" VerticalAlignment="center"
                      HorizontalAlignment="Center"></PasswordBox>
             </StackPanel>
-            <StackPanel Grid.Row="3" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="160,70,0,1" Grid.RowSpan="2" >
+            <StackPanel Grid.Row="3" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="160,70,0,1" Grid.RowSpan="2" >
                 <TextBlock Text="Ville :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
                 <TextBox x:Name="txtVille"  PlaceholderText="Nouvelle ville"
@@ -110,18 +109,18 @@
                      HorizontalAlignment="Center"></TextBox>
             </StackPanel>
             <Button x:Name="BtnModifierProfil" Content="Modifier mon profil" Grid.Row="5" Grid.ColumnSpan="1" 
-                    VerticalAlignment="Top"  FontSize="25" Background="#5de29c" BorderBrush="#FF7FC86E"
-                    BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="BtnModifierProfil_Click" Margin="196,10,0,0"/>
+                    VerticalAlignment="Top"  FontSize="25" Background="#5de29c" BorderBrush="#FF7FC86E" HorizontalAlignment="Center"
+                    BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="BtnModifierProfil_Click" Margin="0,10,0,0" Grid.Column="0"/>
 
 
             <!--Changer Description-->
-            <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left"
+            <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"
                        Text="Description :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
                        VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
-            <TextBox Grid.Column="3" Grid.Row="2" Grid.RowSpan="3" TextWrapping="Wrap"
+            <TextBox Grid.Column="4" Grid.Row="2" Grid.RowSpan="3" TextWrapping="Wrap"
                      PlaceholderText="Nouvelle description" Name="txtDescription"
-                     FontSize="30"></TextBox>
-            <Button x:Name="BtnModifierDescription" Content="Modifier ma Description" Grid.Row="5" Grid.Column="3"
+                     FontSize="30" ></TextBox>
+            <Button x:Name="BtnModifierDescription" Content="Modifier ma Description" Grid.Row="5" Grid.Column="4"
                     VerticalAlignment="Top"  FontSize="25" Background="#5de29c" BorderBrush="#FF7FC86E" HorizontalAlignment="Center"
                     BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="BtnModifierDescription_Click" Margin="0,10,0,0"/>
         </Grid>

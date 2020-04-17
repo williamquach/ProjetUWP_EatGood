@@ -25,11 +25,11 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="160"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Border Background="#FFD5FFCB" Grid.Column="0" Grid.ColumnSpan="2"></Border>
+            <Border Background="#5de29c" Grid.Column="0" Grid.ColumnSpan="2"></Border>
             <Image Grid.Column="0" x:Name="img_fastFood_accueil" Source="../../images/5_image_fastfood.jpg"></Image>
             <TextBlock Grid.Column="1" Text="Bienvenue..." VerticalAlignment="Center" HorizontalAlignment="Center" 
                        Foreground="#0f2459" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
-                       FontSize="30" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
+                       FontSize="50" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
             <Image Grid.Column="2" x:Name="img_fastFood_accueil_2" Source="../../images/2_image_fastfood.jpg"></Image>
 
         </Grid>
@@ -69,43 +69,43 @@
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Border Background="AliceBlue"></Border>
+            <Border Background="#0f2459" ></Border>
             <TextBlock Text="Liste de mes candidatures :" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="#0F2459">
+                       FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="White">
             </TextBlock>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
                     <ColumnDefinition Width="300"></ColumnDefinition>
                     <ColumnDefinition Width="500"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                <Border Background="#5de29c" Grid.ColumnSpan="5"></Border>
+                <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="1" Text="Poste :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                <TextBlock Grid.Column="1" Text="Poste :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="2" Text="Motivations :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                <TextBlock Grid.Column="2" Text="Motivations :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="3" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                <TextBlock Grid.Column="3" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="4" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
+                <TextBlock Grid.Column="4" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
             </Grid>
             <TextBlock Text="Vous n'avez pas encore émis de candidature. Qu'attendez-vous ? ;)" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
                        FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
                        Margin="0,50,0,0" Grid.Row="2" x:Name="txtYaTilDesCandidatures"></TextBlock>
-            
-            <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" SelectionChanged="lvCandidaturesCandidat_SelectionChanged">
+
+            <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" SelectionChanged="lvCandidaturesCandidat_SelectionChanged" Background="#0f2459">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="{Binding LeResto.LibelleResto}" Width="300"></TextBlock>
-                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="300" TextAlignment="Center"></TextBlock>
-                            <TextBlock Text="{Binding MessageMotivations}" Width="500" TextAlignment="Center"></TextBlock>
-                            <TextBlock Text="{Binding StatutMessage}" Width="150" TextAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding LeResto.LibelleResto}" Width="300" Foreground="White"></TextBlock>
+                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="300" TextAlignment="Center" Foreground="White"></TextBlock>
+                            <TextBlock Text="{Binding MessageMotivations}" Width="500" TextAlignment="Center" Foreground="White"></TextBlock>
+                            <TextBlock Text="{Binding StatutMessage}" Width="150" TextAlignment="Center" FontWeight="Bold" Foreground="White"></TextBlock>
+                            <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Center" Foreground="White"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

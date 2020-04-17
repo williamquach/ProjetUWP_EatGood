@@ -12,6 +12,7 @@ namespace Projet_EatGood_Recrutement.App.API
 {
     public class Data_EatGood
     {
+        public Utilisateur LUtilisateurDeMaintenant { get; set; }
         public List<Utilisateur> lesUtilisateurs { get; set; }
         public List<Candidature> lesCandidatures { get; set; }
         public List<Restaurant> lesResto { get; set; }
@@ -28,18 +29,26 @@ namespace Projet_EatGood_Recrutement.App.API
             lesResto = new List<Restaurant>();
             hc = new HttpClient();
             hc2 = new HttpClient();
-            //appelFonctionCharger();
+            appelFonctionCharger();
         }
-        //public async void appelFonctionCharger()
-        //{
-        //    await ChargerLesDonnees();
-        //}
+        public void SetLutilisateurDeMaintenant(Utilisateur util)
+        {
+            LUtilisateurDeMaintenant = util;
+        }
+        public async void appelFonctionCharger()
+        {
+            await ChargerLesDonnees();
+        }
 
         public async Task ChargerLesDonnees()
         {
+            await GetLesResto();
+            await Task.WhenAny(GetLesUtilisateurs());
+            await Task.WhenAll(ChargerLesPostes());
+        }
+        public async Task ChargerLesPostes()
+        {
             await GetLesPostes();
-            await Task.WhenAny(GetLesResto());
-            await Task.WhenAll(GetLesUtilisateurs());
         }
         public async Task GetLesPostes()
         {

@@ -35,17 +35,12 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
         Utilisateur lutilisateurActuellement;
         HttpClient hc;
         Data_EatGood lesDonnees;
-        public async void GetAllUsers()
-        {
-            lesDonnees = new Data_EatGood();
-
-            await lesDonnees.ChargerLesDonnees();
-        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
             {
-                lutilisateurActuellement = e.Parameter as Utilisateur;
+                lesDonnees = e.Parameter as Data_EatGood;
+                lutilisateurActuellement = lesDonnees.LUtilisateurDeMaintenant;
                 txtBienvenue.Text +=  lutilisateurActuellement.PrenomUtilisateur + " " + lutilisateurActuellement.NomUtilisateur;
             }
             base.OnNavigatedTo(e);
@@ -53,7 +48,6 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            GetAllUsers();
 
             hc = new HttpClient();
             if (lutilisateurActuellement != null)
@@ -117,15 +111,16 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                     lutilisateurActuellement.PrenomUtilisateur = txtPrenom.Text;
                     lutilisateurActuellement.MotDePasse = txtMdp.Password;
                     lutilisateurActuellement.VilleCandidat = txtMdp.Password;
+                    lesDonnees.LUtilisateurDeMaintenant = lutilisateurActuellement;
                     var message = new MessageDialog("Votre profil a bien été mis à jour");
                     await message.ShowAsync();
-                    this.Frame.Navigate(typeof(Page_Accueil), lutilisateurActuellement);
+                    this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
                 }
                 else
                 {
                     var message = new MessageDialog("L'utilisateur n'existe pas ou les identifiants sont incorrects. Veuillez recharger l'application.");
                     await message.ShowAsync();
-                    this.Frame.Navigate(typeof(Page_Profil), lutilisateurActuellement);
+                    this.Frame.Navigate(typeof(Page_Profil), lesDonnees);
                 }
             }
         }
@@ -152,22 +147,23 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                 if (resultat == "true")
                 {
                     lutilisateurActuellement.DescriptionCandidat = txtDescription.Text;
+                    lesDonnees.LUtilisateurDeMaintenant = lutilisateurActuellement;
                     var message = new MessageDialog("Votre description a bien été mise à jour");
                     await message.ShowAsync();
-                    this.Frame.Navigate(typeof(Page_Accueil), lutilisateurActuellement);
+                    this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
                 }
                 else
                 {
                     var message = new MessageDialog("L'utilisateur n'existe pas ou les identifiants sont incorrects. Veuillez recharger l'application.");
                     await message.ShowAsync();
-                    this.Frame.Navigate(typeof(Page_Profil), lutilisateurActuellement);
+                    this.Frame.Navigate(typeof(Page_Profil), lesDonnees);
                 }
             }
         }
 
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Page_Profil), lutilisateurActuellement);
+            this.Frame.Navigate(typeof(Page_Profil), lesDonnees);
         }
 
         private void BtnMesMessages_Click(object sender, RoutedEventArgs e)
@@ -187,7 +183,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
 
         private void BtnAccueil_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Page_Accueil), lutilisateurActuellement);
+            this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
 
         }
     }

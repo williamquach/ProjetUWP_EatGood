@@ -35,11 +35,10 @@ namespace Projet_EatGood_Recrutement.App.Pages
         Data_EatGood lesDonnees;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            GetAllUsers();
-
             if (e.Parameter != null)
             {
-                lutilisateurActuellement = e.Parameter as Utilisateur;
+                lesDonnees = e.Parameter as Data_EatGood;
+                lutilisateurActuellement = lesDonnees.LUtilisateurDeMaintenant;
                 txtBienvenue.Text = $"Bienvenue {lutilisateurActuellement.PrenomUtilisateur} {lutilisateurActuellement.NomUtilisateur}";
             }
             else
@@ -48,12 +47,6 @@ namespace Projet_EatGood_Recrutement.App.Pages
             }
             base.OnNavigatedTo(e);
 
-        }
-        public async void GetAllUsers()
-        {
-            lesDonnees = new Data_EatGood();
-
-            await lesDonnees.ChargerLesDonnees();
         }
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -75,7 +68,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
 
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Page_Profil), lutilisateurActuellement);
+            this.Frame.Navigate(typeof(Page_Profil), lesDonnees);
 
         }
 
@@ -97,7 +90,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
 
         private void BtnAccueil_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Page_Accueil), lutilisateurActuellement);
+            this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
         }
     }
 }

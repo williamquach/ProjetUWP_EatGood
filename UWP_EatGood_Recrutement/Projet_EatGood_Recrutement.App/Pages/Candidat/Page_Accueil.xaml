@@ -93,6 +93,9 @@
                 <TextBlock Grid.Column="4" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#FF9A9A9A"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
             </Grid>
+            <TextBlock Text="Vous n'avez pas encore émis de candidature. Qu'attendez-vous ? ;)" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
+                       FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
+                       Margin="0,50,0,0" Grid.Row="2" x:Name="txtYaTilDesCandidatures"></TextBlock>
             
             <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" SelectionChanged="lvCandidaturesCandidat_SelectionChanged">
                 <ListView.ItemTemplate>

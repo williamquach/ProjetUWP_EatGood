@@ -46,7 +46,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
             if (e.Parameter != null)
             {
                 lutilisateurActuellement = e.Parameter as Utilisateur;
-                txtBienvenue.Text += " " + lutilisateurActuellement.PrenomUtilisateur + " " + lutilisateurActuellement.NomUtilisateur;
+                txtBienvenue.Text +=  lutilisateurActuellement.PrenomUtilisateur + " " + lutilisateurActuellement.NomUtilisateur;
             }
             base.OnNavigatedTo(e);
         }

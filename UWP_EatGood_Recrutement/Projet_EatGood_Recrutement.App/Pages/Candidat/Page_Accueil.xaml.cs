@@ -60,8 +60,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
             List<Candidature> lesCandidaturesDuUser = await lesDonnees.GetLesCandidaturesByCandidat(lutilisateurActuellement.IdUtilisateur);
             if (lesCandidaturesDuUser.Count == 0)
             {
-                var message = new MessageDialog("Vous n'avez posté aucune candidature. Qu'attendez vous ?! ;)");
-                await message.ShowAsync();
+                txtYaTilDesCandidatures.Visibility = Visibility.Visible;
             } 
             else
             {

@@ -168,6 +168,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
 
         private void BtnMesMessages_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(Page_Messages), lesDonnees);
 
         }
 

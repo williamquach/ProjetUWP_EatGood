@@ -145,7 +145,34 @@ namespace Projet_EatGood_Recrutement.App.API
             return lesCandids;
 
         }
-        
+
+        public async Task<List<Message>> GetLesMessagesDuCandidat(int idCandidat)
+        {
+            List<Message> lesMessages = new List<Message>();
+            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getMessagesByUser.php?" +
+                                                  "action=getMessagesByCandidat&" +
+                                                  "idCandidat=" + idCandidat);
+            var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
+            var list = donnees["results"]["messages"];
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    Restaurant leResto = GetUnRestoById(Convert.ToInt32(item["codeRestaurant"].Value.ToString()));
+                    Message unMessage = new Message()
+                    {
+                        IdMessage = Convert.ToInt32(item["idM"].Value.ToString()),
+                        ContenuMessage = item["message"].Value.ToString(),
+                        LExpediteur = leResto,
+                        StatutMessage = item["statutMsg"].Value.ToString()
+                    };
+
+                    lesMessages.Add(unMessage);
+                }
+            }
+            return lesMessages;
+        }
+
         public Restaurant GetUnRestoById(int idResto)
         {
             Restaurant leResto = new Restaurant();

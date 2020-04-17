@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
             <Border Background="#5de29c" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"></Border>
             <Image Grid.Column="0" x:Name="img_fastFood_accueil" Source="../../images/5_image_fastfood.jpg"></Image>
-            <TextBlock Grid.Column="1" Text="Bienvenue sur votre profil " VerticalAlignment="Center" HorizontalAlignment="Center" 
+            <TextBlock Grid.Column="1" Text="Voici ton profil " VerticalAlignment="Center" HorizontalAlignment="Center" 
                        Foreground="Black" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
                        FontSize="50" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
             <Image Grid.Column="2" x:Name="img_fastFood_accueil_2" Source="../../images/2_image_fastfood.jpg"></Image>

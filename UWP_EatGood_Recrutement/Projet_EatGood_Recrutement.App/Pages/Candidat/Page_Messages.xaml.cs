@@ -69,7 +69,100 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                 lvMessagesDuCandidat.ItemsSource = lesMessageDuUser;
             }
         }
-        
+        public async void ChargerLesMessages(Object o)
+        {
+            List<Message> lesMessageDuUser = await lesDonnees.GetLesMessagesDuCandidat(lutilisateurActuellement.IdUtilisateur);
+            if (lesMessageDuUser.Count == 0)
+            {
+                txtYatilDesMessages.Visibility = Visibility.Visible;
+                lvMessagesDuCandidat.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                lvMessagesDuCandidat.ItemsSource = lesMessageDuUser;
+                lvMessagesDuCandidat.SelectedItem = o;
+            }
+        }
+        private async void lvMessagesDuCandidat_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (lvMessagesDuCandidat.SelectedItem != null)
+            {
+                Message leMessageSelectionne = lvMessagesDuCandidat.SelectedItem as Message;
+                int idMsg = leMessageSelectionne.IdMessage;
+                int idCandidat = leMessageSelectionne.LeDestinataire.IdUtilisateur;
+                int idResto = leMessageSelectionne.LExpediteur.IdResto;
+                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/updateStatutMessage.php?" +
+                                                      "action=updateEtatMessage" +
+                                                      "&idMessage=" + idMsg +
+                                                      "&idCandidat=" + idCandidat +
+                                                      "&idResto=" + idResto);
+                var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
+                var list = donnees["Success"];
+                if (list == "false")
+                {
+                    var message = new MessageDialog("Erreur le message n'existe pas");
+                    await message.ShowAsync(); ;
+                }
+                else if (list == "true")
+                {
+                    ChargerLesMessages(lvMessagesDuCandidat.SelectedItem);
+                }
+                //
+            }
+        }
+
+        private async void btnSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            // action=deletemessage&idMessage={ID MESSAGE}&idCandidat={ID CANDIDAT}
+            if (lvMessagesDuCandidat.SelectedItem != null)
+            {
+                Message leMessageChoisi = lvMessagesDuCandidat.SelectedItem as Message;
+                Restaurant leRestoChoisi = leMessageChoisi.LExpediteur;
+                ContentDialog DeleteMessageDialog = new ContentDialog
+                {
+                    Title = "Attention !",
+                    Content = "Vous vous apprêtez à supprimer un message.\n" +
+                              "Êtes-vous sûr(e) de vouloir supprimer ce message du restaurant " + leRestoChoisi.LibelleResto +
+                              " ?",
+                    PrimaryButtonText = "Oui",
+                    CloseButtonText = "Non"
+                };
+
+                ContentDialogResult result = await DeleteMessageDialog.ShowAsync();
+                // Supprime le message si l'utilisateur a cliqué sur le bouton principal ("oui")
+                // Sinon, rien faire.
+                if (result == ContentDialogResult.Primary)
+                {
+                    // action=deleteCandidature&idCandidature={idCandidature}
+                    string idMessage = leMessageChoisi.IdMessage.ToString();
+                    string idCandidat = lutilisateurActuellement.IdUtilisateur.ToString();
+                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
+                                                          "action=deleteMessage" +
+                                                          "&idMessage=" + idMessage +
+                                                          "&idCandidat=" + idCandidat);
+                    var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                    var resultat = donneesJson["Success"];
+                    if (resultat == "true")
+                    {
+                        var message = new MessageDialog("Vous avez supprimé un message du restaurant " +
+                                                        leRestoChoisi.LibelleResto);
+                        await message.ShowAsync();
+                        await lesDonnees.ChargerLesDonnees();
+                        this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
+                    }
+                    else
+                    {
+                        var message = new MessageDialog("Ce message n'existe pas. Ou alors il y a une erreur dans le code");
+                        await message.ShowAsync();
+                    }
+                }
+            }
+            else
+            {
+                var message = new MessageDialog("! Avant de supprimer une candidature, il faut d'abord en selectionner une !");
+                await message.ShowAsync();
+            }
+        }
         private void BtnAccueil_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
@@ -97,39 +190,6 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
         {
             this.Frame.Navigate(typeof(MainPage));
 
-        }
-
-        private void lvMessagesDuCandidat_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private async void lvMessagesDuCandidat_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (lvMessagesDuCandidat.SelectedItem != null)
-            {
-                Message leMessageSelectionne = lvMessagesDuCandidat.SelectedItem as Message;
-                int idMsg = leMessageSelectionne.IdMessage;
-                int idCandidat = leMessageSelectionne.LeDestinataire.IdUtilisateur;
-                int idResto = leMessageSelectionne.LExpediteur.IdResto;
-                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/updateStatutMessage.php?" +
-                                                      "action=updateEtatMessage" +
-                                                      "&idMessage=" + idMsg + 
-                                                      "&idCandidat=" + idCandidat +
-                                                      "&idResto=" + idResto);
-                var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
-                var list = donnees["Success"];
-                if(list == "false")
-                {
-                    var message = new MessageDialog("Erreur le message n'existe pas");
-                    await message.ShowAsync(); ;
-                }
-                else if (list == "true")
-                {
-                    ChargerLesMessages();
-                }
-                //
-            }
-        }
+        }        
     }
 }

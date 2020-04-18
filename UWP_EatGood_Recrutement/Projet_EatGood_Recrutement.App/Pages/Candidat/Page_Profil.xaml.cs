@@ -95,7 +95,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                 string newMdp = txtMdp.Password;
                 string newVille = txtVille.Text;
 
-                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index.php?" +
+                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
                                                       "action=updateUser" +
                                                       "&login=" + login +
                                                       "&motdepasse=" + motDePasse +
@@ -137,7 +137,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                 string motDePasse = lutilisateurActuellement.MotDePasse;
                 string description = txtDescription.Text;
 
-                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index.php?" +
+                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
                                                       "action=updateDesc" + 
                                                       "&login=" + login +
                                                       "&motdepasse=" + motDePasse +

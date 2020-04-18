@@ -65,7 +65,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
             }
             else
             {
-                // localhost/recru_eatgood_api/index.php?action=sinscrire&nom={NOM}&prenom={PRENOM}&login={LOGIN}&motdepasse={PASSWORD}&ville={ville}
+                // localhost/recru_eatgood_api/index_candidat.php?action=sinscrire&nom={NOM}&prenom={PRENOM}&login={LOGIN}&motdepasse={PASSWORD}&ville={ville}
                 // récupération des données utilisateurs
                 string nom = txtNom.Text;
                 string prenom = txtPrenom.Text;
@@ -75,7 +75,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
 
                 // L'api permet de vérifier si l'utilisateur existe déjà à l'aide de son login
                 // S'il n'existe pas déjà, on l'inscrit.
-                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index.php?" +
+                var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
                                                       "action=sinscrire&" +
                                                       "nom=" + nom + "&" +
                                                       "prenom=" + prenom + "&" +

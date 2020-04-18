@@ -102,7 +102,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                     // Créer la candidature
                     // L'api permet de vérifier si la candidature existe déjà à l'aide de l'utilisateur et l'id du resto
                     // Si elle n'existe pas déjà, on la créée.
-                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index.php?" +
+                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
                                                           "action=newCandidature" +
                                                           "&idCandidat=" + idCandidat +
                                                           "&idResto=" + idResto +

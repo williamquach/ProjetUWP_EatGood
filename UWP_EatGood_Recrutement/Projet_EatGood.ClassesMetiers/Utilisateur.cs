@@ -16,5 +16,6 @@ namespace Projet_EatGood_Recrutement.Classes
         public string VilleCandidat { get; set; }
         public List<Message> MesMessages { get; set; }
         public List<Candidature> MesCandidatures { get; set; }
+        public string FullName { get; set; }
     }
 }

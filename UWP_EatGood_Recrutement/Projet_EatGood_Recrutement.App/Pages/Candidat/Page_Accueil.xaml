@@ -109,11 +109,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"  Spacing="20">
-                            <TextBlock  Text="{Binding LeResto.LibelleResto}" Width="280" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="280" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding MessageMotivations}" Width="480" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding StatutMessage}" Width="130" TextAlignment="Justify" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock  Text="{Binding LeResto.LibelleResto}" VerticalAlignment="Center" Width="280" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" VerticalAlignment="Center" Width="280" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding MessageMotivations}" VerticalAlignment="Center" Width="480" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding StatutMessage}" VerticalAlignment="Center" Width="130" TextAlignment="Justify" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding MessageReponse}" VerticalAlignment="Center" Width="Auto" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

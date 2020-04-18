@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Projet_EatGood_Recrutement.App.API;
 using Projet_EatGood_Recrutement.App.Pages;
+using Projet_EatGood_Recrutement.App.Pages.Recruteur;
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Projet_EatGood_Recrutement.App
@@ -88,8 +89,8 @@ namespace Projet_EatGood_Recrutement.App
                     }
                     else if (lutilisateurActuel.RoleUtilisateur == "recruteur")
                     {
-                        var message = new MessageDialog("Vous êtes recruteur.");
-                        await message.ShowAsync();
+                        this.Frame.Navigate(typeof(Page_R_Accueil), lesDonnees);
+
                     }
                     else if (lutilisateurActuel.RoleUtilisateur == "admin")
                     {

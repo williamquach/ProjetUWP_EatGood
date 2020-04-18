@@ -17,6 +17,7 @@ namespace Projet_EatGood_Recrutement.App.API
         public List<Candidature> lesCandidaturesDuCandidatActuel { get; set; }
         public List<Restaurant> lesResto { get; set; }
         public List<Poste> lesPostes { get; set; }
+        public List<Candidature> AllCandidatures { get; set; }
 
         HttpClient hc;
         HttpClient hc2;
@@ -45,6 +46,11 @@ namespace Projet_EatGood_Recrutement.App.API
         public async Task ChargerLesPostes()
         {
             await GetLesPostes();
+            await SetAllCandidature();
+        }
+        public async Task SetAllCandidature()
+        {
+            await GetAllCandidature();
         }
         public async Task GetLesPostes()
         {
@@ -104,6 +110,7 @@ namespace Projet_EatGood_Recrutement.App.API
                     PrenomUtilisateur = item["prenom"].Value.ToString(),
                     RoleUtilisateur = item["role"].Value.ToString(),
                     VilleCandidat = item["ville"].Value.ToString(),
+                    FullName = item["nom"].Value.ToString() + " " + item["prenom"].Value.ToString()
                 };
                 if (item["descriptionCandidat"].Value != null)
                 {
@@ -137,7 +144,7 @@ namespace Projet_EatGood_Recrutement.App.API
                     };
                     if (item["messageReponse"].Value != null)
                     {
-                        uneCandidature.MessageReponse = item["messageReponse"].Value.ToString();
+                        uneCandidature.MessageReponse = "";
                     }
 
                     lesCandidatures.Add(uneCandidature);
@@ -174,6 +181,9 @@ namespace Projet_EatGood_Recrutement.App.API
             }
             return lesMessages;
         }
+        // ===================================================================================================================================================
+        //  FONCTION SYNCHRONE ou non async en tout cas (fonctions simples)
+        // ===================================================================================================================================================
         public Restaurant GetUnRestoById(int idResto)
         {
             Restaurant leResto = new Restaurant();
@@ -221,6 +231,46 @@ namespace Projet_EatGood_Recrutement.App.API
                 lesRestoLibelles.Add(r.LibelleResto);
             }
             return lesRestoLibelles;
+        }
+        // =============================================================================================================
+
+
+        // RECRUTEUR
+        public async Task GetAllCandidature()
+        {
+            AllCandidatures = new List<Candidature>();
+            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getAllCandidatures.php");
+            var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
+            var list = donnees["results"]["candidatures"];
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    Restaurant leResto = GetUnRestoById(Convert.ToInt32(item["codeRestaurant"].Value.ToString()));
+                    Poste lePoste = GetUnPosteById(Convert.ToInt32(item["codePoste"].Value.ToString()));
+                    Utilisateur lUtilisateur = GetUnUtilisateurById(Convert.ToInt32(item["codeCandidat"].Value.ToString()));
+                    Candidature uneCandidature = new Candidature()
+                    {
+                        IdCandidature = Convert.ToInt32(item["idC"].Value.ToString()),
+                        MessageMotivations = item["messageMotivations"].Value.ToString(),
+                        StatutMessage = item["statut"].Value.ToString(),
+                        LeCandidat = lUtilisateur,
+                        LePosteVoulu = lePoste,
+                        LeResto = leResto
+                    };
+                    if (item["messageReponse"].Value != null)
+                    {
+                        uneCandidature.MessageReponse = item["messageReponse"].Value.ToString();
+                    }
+                    else
+                    {
+                        uneCandidature.MessageReponse = "";
+                    }
+                    AllCandidatures.Add(uneCandidature);
+                    //lesCandidatures.Add(uneCandidature);
+                }
+            }
+            //return lesCandidatures;
         }
     }
 }

@@ -2,11 +2,11 @@
 using Projet_EatGood_Recrutement.App.API;
 using Projet_EatGood_Recrutement.App.Pages.Candidat;
 using Projet_EatGood_Recrutement.Classes;
+using System.Net.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -99,7 +99,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
                     //Meilleures salutations,
                     //L'équipe Ressources Humaines Thales
                 }
-                else if (laCandidatureChoisie.StatutMessage == "En attente d'entretien")
+                else if (laCandidatureChoisie.StatutMessage == "Acceptée")
                 {
                     var message = new MessageDialog(laCandidatureChoisie.MessageReponse);
                     await message.ShowAsync();
@@ -118,42 +118,50 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 Candidature laCandidChoisie = lvCandidaturesCandidat.SelectedItem as Candidature;
                 Restaurant leRestoChoisi = laCandidChoisie.LeResto;
                 Poste lePosteChoisi = laCandidChoisie.LePosteVoulu;
-                ContentDialog DeleteCandidatureDialog = new ContentDialog
+                if (laCandidChoisie.StatutMessage == "En attente")
                 {
-                    Title = "Attention !",
-                    Content = "Vous vous apprêtez à supprimer votre candidature.\n" +
+                    ContentDialog DeleteCandidatureDialog = new ContentDialog
+                    {
+                        Title = "Attention !",
+                        Content = "Vous vous apprêtez à supprimer votre candidature.\n" +
                               "Êtes-vous sûr(e) de vouloir supprimer votre candidature au restaurant " + leRestoChoisi.LibelleResto +
                               " au poste de " + lePosteChoisi.LibellePoste + " ?",
-                    PrimaryButtonText = "Oui",
-                    CloseButtonText = "Non"
-                };
+                        PrimaryButtonText = "Oui",
+                        CloseButtonText = "Non"
+                    };
 
-                ContentDialogResult result = await DeleteCandidatureDialog.ShowAsync();
-                // Supprime la candidature si l'utilisateur a cliqué sur le bouton principal ("oui")
-                // Sinon, rien faire.
-                if (result == ContentDialogResult.Primary)
+                    ContentDialogResult result = await DeleteCandidatureDialog.ShowAsync();
+                    // Supprime la candidature si l'utilisateur a cliqué sur le bouton principal ("oui")
+                    // Sinon, rien faire.
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        // action=deleteCandidature&idCandidature={idCandidature}
+                        string idCandidature = laCandidChoisie.IdCandidature.ToString();
+                        var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
+                                                              "action=deleteCandidature" +
+                                                              "&idCandidature=" + idCandidature);
+                        var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                        var resultat = donneesJson["Success"];
+                        if (resultat == "true")
+                        {
+                            var message = new MessageDialog("Vous avez supprimé votre candidature chez le restaurant " +
+                                                            leRestoChoisi.LibelleResto + " au poste de " + lePosteChoisi.LibellePoste);
+                            await message.ShowAsync();
+                            await lesDonnees.ChargerLesDonnees();
+                            this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
+                        }
+                        else
+                        {
+                            var message = new MessageDialog("Cette candidature n'existe pas. Ou alors il y a une erreur dans le code");
+                            await message.ShowAsync();
+                        }
+                    }
+                }
+                else
                 {
-                    // action=deleteCandidature&idCandidature={idCandidature}
-                    string idCandidature = laCandidChoisie.IdCandidature.ToString();
-                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
-                                                          "action=deleteCandidature" +
-                                                          "&idCandidature=" + idCandidature);
-                    var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
-                    var resultat = donneesJson["Success"];
-                    if (resultat == "true")
-                    {
-                        var message = new MessageDialog("Vous avez supprimé votre candidature chez le restaurant " +
-                                                        leRestoChoisi.LibelleResto + " au poste de " + lePosteChoisi.LibellePoste);
-                        await message.ShowAsync();
-                        await lesDonnees.ChargerLesDonnees();
-                        this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
-                    }
-                    else
-                    {
-                        var message = new MessageDialog("Cette candidature n'existe pas. Ou alors il y a une erreur dans le code");
-                        await message.ShowAsync();
-                    }
-                }                
+                    var message = new MessageDialog("! Vous ne pouvez pas supprimer cette candidature car le choix du recruteur est déjà en cours ou établi !");
+                    await message.ShowAsync();
+                }
             }
             else
             {
@@ -216,50 +224,58 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 Candidature laCandidChoisie = lvCandidaturesCandidat.SelectedItem as Candidature;
                 Restaurant leRestoChoisi = laCandidChoisie.LeResto;
                 Poste lePosteChoisi = laCandidChoisie.LePosteVoulu;
-                ContentDialog DeleteCandidatureDialog = new ContentDialog
+                if(laCandidChoisie.StatutMessage == "En attente")
                 {
-                    Title = "Bonjour !",
-                    Content = "Voulez-vous vraiment modifier les motivations de votre candidature au restaurant " + leRestoChoisi.LibelleResto +
+                    ContentDialog DeleteCandidatureDialog = new ContentDialog
+                    {
+                        Title = "Bonjour !",
+                        Content = "Voulez-vous vraiment modifier les motivations de votre candidature au restaurant " + leRestoChoisi.LibelleResto +
                               " au poste de " + lePosteChoisi.LibellePoste + " ?",
-                    PrimaryButtonText = "Oui",
-                    CloseButtonText = "Non"
-                };
+                        PrimaryButtonText = "Oui",
+                        CloseButtonText = "Non"
+                    };
 
-                ContentDialogResult result = await DeleteCandidatureDialog.ShowAsync();
-                // Modifie la candidature si l'utilisateur a cliqué sur le bouton principal ("oui")
-                // Sinon, rien faire.
-                if (result == ContentDialogResult.Primary)
+                    ContentDialogResult result = await DeleteCandidatureDialog.ShowAsync();
+                    // Modifie la candidature si l'utilisateur a cliqué sur le bouton principal ("oui")
+                    // Sinon, rien faire.
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        string text = await InputTextDialogAsync("Motivations", laCandidChoisie.MessageMotivations);
+                        if (text != "")
+                        {
+                            //"action=updateMotivationCandidature&idCandidature={idCandidature}&new_motivations={new_motivation}" . '<br>' . '<br>';
+                            string idCandidature = laCandidChoisie.IdCandidature.ToString();
+                            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
+                                                                  "action=updateMotivationCandidature" +
+                                                                  "&idCandidature=" + idCandidature +
+                                                                  "&new_motivations=" + text);
+                            var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                            var resultat = donneesJson["Success"];
+                            if (resultat == "true")
+                            {
+                                var message = new MessageDialog("Vous avez modifié vos motivation de votre candidature chez le restaurant " +
+                                                                leRestoChoisi.LibelleResto + " au poste de " + lePosteChoisi.LibellePoste);
+                                await message.ShowAsync();
+                                await lesDonnees.ChargerLesDonnees();
+                                this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
+                            }
+                            else if (resultat == "false")
+                            {
+                                var message = new MessageDialog("Cette candidature n'existe pas. Ou alors il y a une erreur dans le code");
+                                await message.ShowAsync();
+                            }
+                        }
+                        else
+                        {
+                            var message = new MessageDialog("Vous devez impérativement entrer vos motivations.");
+                            await message.ShowAsync();
+                        }
+                    }
+                } 
+                else
                 {
-                    string text = await InputTextDialogAsync("Motivations", laCandidChoisie.MessageMotivations);
-                    if (text != "")
-                    {
-                        //"action=updateMotivationCandidature&idCandidature={idCandidature}&new_motivations={new_motivation}" . '<br>' . '<br>';
-                        string idCandidature = laCandidChoisie.IdCandidature.ToString();
-                        var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
-                                                              "action=updateMotivationCandidature" +
-                                                              "&idCandidature=" + idCandidature + 
-                                                              "&new_motivations=" + text);
-                        var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
-                        var resultat = donneesJson["Success"];
-                        if (resultat == "true")
-                        {
-                            var message = new MessageDialog("Vous avez modifié vos motivation de votre candidature chez le restaurant " +
-                                                            leRestoChoisi.LibelleResto + " au poste de " + lePosteChoisi.LibellePoste);
-                            await message.ShowAsync();
-                            await lesDonnees.ChargerLesDonnees();
-                            this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
-                        }
-                        else if (resultat == "false")
-                        {
-                            var message = new MessageDialog("Cette candidature n'existe pas. Ou alors il y a une erreur dans le code");
-                            await message.ShowAsync();
-                        }
-                    }
-                    else
-                    {
-                        var message = new MessageDialog("Vous devez impérativement entrer vos motivations.");
-                        await message.ShowAsync();
-                    }
+                    var message = new MessageDialog("! Vous ne pouvez pas modifier les motivations de cette candidature car le choix du recruteur est déjà en cours ou établi !");
+                    await message.ShowAsync();
                 }
             }
             else

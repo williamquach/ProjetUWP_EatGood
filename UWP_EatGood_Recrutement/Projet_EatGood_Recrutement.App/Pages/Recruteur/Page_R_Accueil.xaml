@@ -47,16 +47,16 @@
             <Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="1" Background="#FFDDAC7B"></Border>
             <Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="2" Background="#FFEE9696"></Border>-->
             <Button Grid.Column="0" x:Name="BtnAccueil" Content="Accueil" HorizontalAlignment="Center" BorderBrush="Black"
-                    Foreground="White" Background="#FF76F7F9" Click="BtnAccueil_Click" VerticalAlignment="Center" BorderThickness="0.8"
+                    Foreground="White" Background="#FF76F7F9"  VerticalAlignment="Center" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
             <Button Grid.Column="1" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
-                    Foreground="#0f2459" Background="#FF9D99D7" Click="BtnProfil_Click" VerticalAlignment="Center" BorderThickness="0.8"
+                    Foreground="#0f2459" Background="#FF9D99D7"  VerticalAlignment="Center" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
-                    Foreground="#0f2459" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
+                    Foreground="#0f2459" Background="#FFDDAC7B"  BorderBrush="Black"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
-                    Foreground="#0f2459" Background="#FFEE9696" Click="BtnNvelleCandidature_Click" BorderBrush="Black" BorderThickness="0.8"
+                    Foreground="#0f2459" Background="#FFEE9696"  BorderBrush="Black" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="4" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
                     Foreground="#0f2459" Background="#FFCAB6B6" Click="BtnDeconnexion_Click" BorderBrush="Black"
@@ -76,23 +76,25 @@
             </TextBlock>
             <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
                     <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="380"></ColumnDefinition>
                     <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="380"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Background="#5de29c" Grid.ColumnSpan="6"></Border>
-                <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                <TextBlock Grid.Column="0" Text="Candidat(e) :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="1" Text="Poste :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                <TextBlock Grid.Column="1" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="2" Text="Motivations :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                <TextBlock Grid.Column="2" Text="Poste :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="3" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                <TextBlock Grid.Column="3" Text="Motivations :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="4" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                <TextBlock Grid.Column="4" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                           HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                <TextBlock Grid.Column="5" Text="Réponse :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
                 <!--<Button x:Name="btnSupprimer" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"
                          FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" Click="btnSupprimer_Click"
@@ -101,33 +103,65 @@
             </Grid>
             <Border Grid.Row="2" Background="#0f2459" Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
 
-            <TextBlock Text="Vous n'avez pas encore émis de candidature. Qu'attendez-vous ? ;)" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
+            <TextBlock Text="Il n'y aucune candidature pour le moment :(" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
                        FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
                        Margin="0,50,0,0" Grid.Row="2" x:Name="txtYaTilDesCandidatures"></TextBlock>
 
-            <ListView x:Name="lvCandidaturesCandidat" Grid.Row="2" Tapped="lvCandidaturesCandidat_Tapped" Background="#0f2459" Visibility="Visible">
+            <ListView x:Name="lvCandidatures" Grid.Row="2" Tapped="lvCandidatures_Tapped" Background="#0f2459" Visibility="Visible">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"  Spacing="20">
-                            <TextBlock  Text="{Binding LeResto.LibelleResto}" Width="280" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="280" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding MessageMotivations}" Width="480" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding StatutMessage}" Width="130" TextAlignment="Justify" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding MessageReponse}" Width="Auto" TextAlignment="Justify" Foreground="White" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding LeCandidat.FullName}" Width="150" Foreground="White" 
+                                       TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding LeResto.LibelleResto}" Width="180" Foreground="White" 
+                                       TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding LePosteVoulu.LibellePoste}" Width="280" 
+                                       TextAlignment="Justify" Foreground="White" 
+                                       TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding MessageMotivations}" MinWidth="360" 
+                                       Width="Auto" TextAlignment="Justify" Foreground="White" 
+                                       TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding StatutMessage}" Width="130" TextAlignment="Justify" 
+                                       FontWeight="Bold" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding MessageReponse}" Width="300" TextAlignment="Justify" 
+                                       Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Orientation="Horizontal" BorderBrush="Gray" BorderThickness="1">
-                <Button x:Name="btnChangerMotivations" HorizontalAlignment="Center"
+                            Orientation="Horizontal" BorderBrush="Gray" BorderThickness="1" Spacing="10">
+                <!--Status :-->
+                <!--
+                En attente
+                En cours
+                Refusée
+                Acceptée
+                -->
+                <TextBlock Text="En cours " Foreground="White" TextAlignment="Start" Height="Auto" VerticalAlignment="Center"
+                           FontSize="18" FontFamily="Century gothic" FontWeight="Bold" ></TextBlock>
+                <Button x:Name="btnStatutEncours" HorizontalAlignment="Center" FontWeight="ExtraBold"
                          FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" 
-                        Click="btnChangerMotivations_Click"
+                        Click="btnStatutEncours_Click"
+                        BorderBrush="#0f2459" BorderThickness="1.2">&#xE718;</Button>
+                <TextBlock Text="Refuser" Foreground="White" TextAlignment="Start" Height="Auto" VerticalAlignment="Center"
+                           FontSize="18" FontFamily="Century gothic" FontWeight="Bold" ></TextBlock>
+                <Button x:Name="btnStatutRefuser" HorizontalAlignment="Center" FontWeight="ExtraBold"
+                         FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" 
+                        Click="btnStatutRefuser_Click"
+                        BorderBrush="#0f2459" BorderThickness="1.2">&#xE8E0;</Button>
+                <TextBlock Text="Accepter" Foreground="White" TextAlignment="Start" Height="Auto" VerticalAlignment="Center"
+                           FontSize="18" FontFamily="Century gothic" FontWeight="Bold" ></TextBlock>
+                <Button x:Name="btnStatutAccepter" HorizontalAlignment="Center" FontWeight="ExtraBold"
+                         FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" 
+                        Click="btnStatutAccepter_Click"
+                        BorderBrush="#0f2459" BorderThickness="1.2">&#xE8E1;</Button>
+                <TextBlock Text="Modifier le message " Foreground="White" TextAlignment="Start" Height="Auto" VerticalAlignment="Center"
+                           FontSize="18" FontFamily="Century gothic" FontWeight="Bold" ></TextBlock>
+                <Button x:Name="btnMessageReponse" HorizontalAlignment="Center" FontWeight="ExtraBold"
+                         FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" 
+                        Click="btnMessageReponse_Click"
                         BorderBrush="#0f2459" BorderThickness="1.2">&#xE8BD;</Button>
-                <Button x:Name="btnSupprimer" HorizontalAlignment="Center"
-                         FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" 
-                        Click="btnSupprimer_Click"
-                        BorderBrush="#0f2459" BorderThickness="1.2">&#xE74D;</Button>
             </StackPanel>
         </Grid>
     </Grid>

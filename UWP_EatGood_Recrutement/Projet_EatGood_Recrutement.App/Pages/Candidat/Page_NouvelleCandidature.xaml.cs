@@ -87,7 +87,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Candidat
                 ContentDialog newCandidatureDialog = new ContentDialog
                 {
                     Title = "Attention !",
-                    Content = "Les motivations que vous avez rentrées ne sont pas modifiables par la suite, relisez afin de ne pas faire d'erreur.\n" +
+                    Content = "Faites attention à bien vous relire afin de ne pas faire d'erreur.\n" +
                               "Êtes-vous sûr(e) de vouloir postuler au restaurant " + leRestoChoisi.LibelleResto + 
                               " au poste de " + lePosteChoisi.LibellePoste + " ?",
                     PrimaryButtonText = "Oui",

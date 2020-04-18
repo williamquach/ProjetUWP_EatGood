@@ -188,6 +188,85 @@ namespace Projet_EatGood_Recrutement.App.Pages
         private void BtnAccueil_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
-        }        
+        }
+        private async Task<string> InputTextDialogAsync(string title, string ancienneMotiv)
+        {
+            TextBox inputTextBox = new TextBox();
+            inputTextBox.AcceptsReturn = false;
+            inputTextBox.Height = 256;
+            inputTextBox.Width = 480;
+            inputTextBox.TextWrapping = TextWrapping.Wrap;
+            inputTextBox.Text = ancienneMotiv;
+            ContentDialog dialog = new ContentDialog();
+            dialog.Width = 600;
+            dialog.Content = inputTextBox;
+            dialog.Title = title;
+            dialog.IsSecondaryButtonEnabled = true;
+            dialog.PrimaryButtonText = "Valider";
+            dialog.SecondaryButtonText = "Annuler";
+            if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+                return inputTextBox.Text;
+            else
+                return "";
+        }
+        private async void btnChangerMotivations_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvCandidaturesCandidat.SelectedItem != null)
+            {
+                Candidature laCandidChoisie = lvCandidaturesCandidat.SelectedItem as Candidature;
+                Restaurant leRestoChoisi = laCandidChoisie.LeResto;
+                Poste lePosteChoisi = laCandidChoisie.LePosteVoulu;
+                ContentDialog DeleteCandidatureDialog = new ContentDialog
+                {
+                    Title = "Bonjour !",
+                    Content = "Voulez-vous vraiment modifier les motivations de votre candidature au restaurant " + leRestoChoisi.LibelleResto +
+                              " au poste de " + lePosteChoisi.LibellePoste + " ?",
+                    PrimaryButtonText = "Oui",
+                    CloseButtonText = "Non"
+                };
+
+                ContentDialogResult result = await DeleteCandidatureDialog.ShowAsync();
+                // Modifie la candidature si l'utilisateur a cliqué sur le bouton principal ("oui")
+                // Sinon, rien faire.
+                if (result == ContentDialogResult.Primary)
+                {
+                    string text = await InputTextDialogAsync("Motivations", laCandidChoisie.MessageMotivations);
+                    if (text != "")
+                    {
+                        //"action=updateMotivationCandidature&idCandidature={idCandidature}&new_motivations={new_motivation}" . '<br>' . '<br>';
+                        string idCandidature = laCandidChoisie.IdCandidature.ToString();
+                        var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_candidat.php?" +
+                                                              "action=updateMotivationCandidature" +
+                                                              "&idCandidature=" + idCandidature + 
+                                                              "&new_motivations=" + text);
+                        var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                        var resultat = donneesJson["Success"];
+                        if (resultat == "true")
+                        {
+                            var message = new MessageDialog("Vous avez modifié vos motivation de votre candidature chez le restaurant " +
+                                                            leRestoChoisi.LibelleResto + " au poste de " + lePosteChoisi.LibellePoste);
+                            await message.ShowAsync();
+                            await lesDonnees.ChargerLesDonnees();
+                            this.Frame.Navigate(typeof(Page_Accueil), lesDonnees);
+                        }
+                        else if (resultat == "false")
+                        {
+                            var message = new MessageDialog("Cette candidature n'existe pas. Ou alors il y a une erreur dans le code");
+                            await message.ShowAsync();
+                        }
+                    }
+                    else
+                    {
+                        var message = new MessageDialog("Vous devez impérativement entrer vos motivations.");
+                        await message.ShowAsync();
+                    }
+                }
+            }
+            else
+            {
+                var message = new MessageDialog("! Avant de modifier une candidature, il faut d'abord en selectionner une !");
+                await message.ShowAsync();
+            }
+        }
     }
 }

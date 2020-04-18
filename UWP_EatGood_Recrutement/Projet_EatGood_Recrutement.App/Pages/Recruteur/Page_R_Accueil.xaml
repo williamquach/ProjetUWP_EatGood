@@ -120,7 +120,7 @@
                                        TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Text="{Binding MessageMotivations}" MinWidth="360" 
                                        Width="Auto" TextAlignment="Justify" Foreground="White" 
-                                       TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                                       TextWrapping="Wrap" VerticalAlignment="Center" MaxWidth="360"></TextBlock>
                             <TextBlock Text="{Binding StatutMessage}" Width="130" TextAlignment="Justify" 
                                        FontWeight="Bold" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Text="{Binding MessageReponse}" Width="300" TextAlignment="Justify" 

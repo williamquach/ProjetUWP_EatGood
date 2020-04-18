@@ -144,6 +144,10 @@ namespace Projet_EatGood_Recrutement.App.API
                     };
                     if (item["messageReponse"].Value != null)
                     {
+                        uneCandidature.MessageReponse = item["messageReponse"].Value.ToString();
+                    }
+                    else
+                    {
                         uneCandidature.MessageReponse = "";
                     }
 

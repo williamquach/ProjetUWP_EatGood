@@ -92,12 +92,6 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 {
                     var message = new MessageDialog(laCandidatureChoisie.MessageReponse);
                     await message.ShowAsync();
-                    //Bonjour,
-                    //Nous vous remercions d'avoir postulé au poste STAGE - Développement Logiciel Applicatif de Monitoring Hardware F/H. Après un examen attentif de votre candidature, nous regrettons de vous informer qu'elle n'a pas été sélectionnée pour ce poste.
-                    //Nous pourrons vous contacter pour de futures opportunités et vous encourageons à nous rejoindre sur les réseaux sociaux.
-                    //Nous vous remercions de votre intérêt pour Thales et vous souhaitons le meilleur dans votre carrière.
-                    //Meilleures salutations,
-                    //L'équipe Ressources Humaines Thales
                 }
                 else if (laCandidatureChoisie.StatutMessage == "Acceptée")
                 {

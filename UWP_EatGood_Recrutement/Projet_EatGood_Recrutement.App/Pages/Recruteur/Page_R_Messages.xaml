@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="Projet_EatGood_Recrutement.App.Pages.Candidat.Page_Messages"
+    x:Class="Projet_EatGood_Recrutement.App.Pages.Recruteur.Page_R_Messages"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Projet_EatGood_Recrutement.App.Pages.Candidat"
+    xmlns:local="using:Projet_EatGood_Recrutement.App.Pages.Recruteur"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -72,7 +72,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Background="#0f2459" Grid.ColumnSpan="2" ></Border>
-            <TextBlock Text="Liste de mes messages :" HorizontalAlignment="Center" VerticalAlignment="Center"
+            <TextBlock Text="Liste des messages :" HorizontalAlignment="Center" VerticalAlignment="Center" 
                            FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="White" Grid.Column="1" Margin="30,0,0,0">
             </TextBlock>
             <Grid Grid.Row="1" Grid.ColumnSpan="2" >
@@ -110,7 +110,7 @@
                             public int StatutMessage { get; set; }
                             public Utilisateur LeDestinataire{ get; set; }
                             public Restaurant LExpediteur { get; set; }-->
-                                
+
                                 <TextBlock Text="{Binding LExpediteur.LibelleResto}" Width="250" Foreground="White" TextAlignment="Justify"
                                        TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
                                 <Border  Width="900"  VerticalAlignment="Center">
@@ -119,7 +119,7 @@
                                 </Border>
                                 <TextBlock Text="{Binding StatutMessage}" Width="250"  VerticalAlignment="Center" HorizontalAlignment="Right"
                                            FontWeight="Bold" Foreground="White" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-                                
+
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

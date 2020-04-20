@@ -50,7 +50,7 @@
                     Foreground="White" Background="#FF76F7F9"  VerticalAlignment="Center" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
             <Button Grid.Column="1" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
-                    Foreground="#0f2459" Background="#FF9D99D7"  VerticalAlignment="Center" BorderThickness="0.8"
+                    Foreground="#0f2459" Background="#FF9D99D7" Click="BtnProfil_Click" VerticalAlignment="Center" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
                     Foreground="#0f2459" Background="#FFDDAC7B"  BorderBrush="Black"
@@ -71,7 +71,7 @@
                 <RowDefinition Height="70"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Background="#0f2459" ></Border>
-            <TextBlock Text="Liste de mes candidatures :" HorizontalAlignment="Center" VerticalAlignment="Center"
+            <TextBlock Text="Liste des candidatures :" HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="White">
             </TextBlock>
             <Grid Grid.Row="1" >

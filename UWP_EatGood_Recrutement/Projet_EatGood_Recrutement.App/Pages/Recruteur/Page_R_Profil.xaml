@@ -1,0 +1,118 @@
+﻿<Page
+    x:Class="Projet_EatGood_Recrutement.App.Pages.Recruteur.Page_R_Profil"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Projet_EatGood_Recrutement.App.Pages.Recruteur"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="85"></RowDefinition>
+            <RowDefinition Height="707*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- 1ere ligne : Logo et Bienvenue -->
+        <Grid x:Name="grd_PremiereLigne">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="160"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Background="#5de29c" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"></Border>
+            <Image Grid.Column="0" x:Name="img_fastFood_accueil" Source="../../images/5_image_fastfood.jpg"></Image>
+            <TextBlock Grid.Column="1" Text="Voici ton profil " VerticalAlignment="Center" HorizontalAlignment="Center" 
+                       Foreground="Black" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
+                       FontSize="50" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
+            <Image Grid.Column="2" x:Name="img_fastFood_accueil_2" Source="../../images/2_image_fastfood.jpg"></Image>
+
+        </Grid>
+
+        <!-- 2e ligne : Profil, Messages et Nouvelle Candidature -->
+        <Grid x:Name="grd_DeuxiemeLigne" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="BtnAccueil" Content="Accueil" HorizontalAlignment="Center" BorderBrush="Black"
+                    Foreground="#0f2459" Background="#FF76F7F9" Click="BtnAccueil_Click" VerticalAlignment="Center" BorderThickness="0.8"
+                    FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+            <Button Grid.Column="1" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
+                    Foreground="White" Background="#FF9D99D7" Click="BtnProfil_Click" VerticalAlignment="Center" BorderThickness="0.8"
+                    FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
+            <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
+                    Foreground="#0f2459" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
+                    FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+            <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
+                    Foreground="#0f2459" Background="#FFEE9696" BorderBrush="Black" BorderThickness="0.8"
+                    FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+            <Button Grid.Column="4" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
+                    Foreground="#0f2459" Background="#FFCAB6B6" Click="BtnDeconnexion_Click" BorderBrush="Black"
+                    FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300" />
+        </Grid>
+        <!-- 3e ligne : Toutes les candidatures -->
+        <Grid x:Name="grd_TroisiemeLigne" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="351*"></ColumnDefinition>
+                <ColumnDefinition Width="649*"></ColumnDefinition>
+                <ColumnDefinition Width="500*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Background="#0f2459" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="6" Width="Auto"></Border>
+            <TextBlock Text="Modifier mon profil :" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"
+                       FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="3" Height="49" Width="384"/>
+
+            <!--Formulaire-->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                <TextBlock Text="Nom :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
+                       VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
+                <TextBox x:Name="txtNom"  PlaceholderText="Nouveau nom"
+                     FontSize="30" Height="60" Width="400" VerticalAlignment="center"
+                     HorizontalAlignment="Center"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                <TextBlock Text="Prénom :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
+                       VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
+                <TextBox x:Name="txtPrenom"  PlaceholderText="Nouveau prénom"
+                     FontSize="30" Height="60" Width="400" VerticalAlignment="center"
+                     HorizontalAlignment="Center"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                <TextBlock Text="Mot de passe :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
+                       VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
+                <PasswordBox x:Name="txtMdp"  PlaceholderText="Nouveau mot de passe" 
+                     FontSize="30" Height="60" Width="400" VerticalAlignment="center"
+                     HorizontalAlignment="Center"></PasswordBox>
+            </StackPanel>
+            <StackPanel Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                <TextBlock Text="Ville :" FontSize="30" FontFamily="Century Gothic" Foreground="White"
+                       VerticalAlignment="Center" TextAlignment="Center" ></TextBlock>
+                <TextBox x:Name="txtVille"  PlaceholderText="Nouvelle ville"
+                     FontSize="30" Height="60" Width="400" VerticalAlignment="center"
+                     HorizontalAlignment="Center"></TextBox>
+            </StackPanel>
+            <Button x:Name="BtnModifierProfil" Content="Modifier mon profil" Grid.Row="5" Grid.ColumnSpan="3"
+                    VerticalAlignment="Top"  FontSize="25" Background="#5de29c" BorderBrush="#FF7FC86E" HorizontalAlignment="Center"
+                    BorderThickness="0.5" FontFamily="Century Gothic" FontWeight="Black" Click="BtnModifierProfil_Click" Margin="0,10,0,0" Height="42" Width="244"/>
+
+
+            <!--Changer Description-->
+        </Grid>
+    </Grid>
+</Page>

@@ -276,5 +276,66 @@ namespace Projet_EatGood_Recrutement.App.API
             }
             //return lesCandidatures;
         }
+        public async Task<List<Message>> GetAllMessagesEnvoyes()
+        {
+            List<Message> allMessages = new List<Message>();
+            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getAllMessagesEnvoyes.php");
+            var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
+            var list = donnees["results"]["messages"];
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    // M.idM, M.message, codeCandidat, codeRestaurant, statutMsg
+                    Utilisateur lUtilisateur = GetUnUtilisateurById(Convert.ToInt32(item["codeCandidat"].Value.ToString()));
+                    Restaurant leResto = GetUnRestoById(Convert.ToInt32(item["codeRestaurant"].Value.ToString()));
+                    Message unMessage = new Message()
+                    {
+                        IdMessage = Convert.ToInt32(item["idM"].Value.ToString()),
+                        ContenuMessage = item["message"].Value.ToString(),
+                        LExpediteur = leResto,
+                        LeDestinataire = lUtilisateur,
+                        StatutMessage = item["statutMsg"].Value.ToString()
+                    };
+
+                    allMessages.Add(unMessage);
+                }
+            }
+            return allMessages;
+        }
+        public async Task<List<Message>> GetAllMessages()
+        {
+            List<Message> allMessages = new List<Message>();
+            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getAllMessages.php");
+            var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
+            var list = donnees["results"]["messages"];
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    // M.idM, M.message, codeCandidat, codeRestaurant, statutMsg
+                    Message unMessage = new Message()
+                    {
+                        IdMessage = Convert.ToInt32(item["idM"].Value.ToString()),
+                        ContenuMessage = item["message"].Value.ToString()
+                    };
+
+                    allMessages.Add(unMessage);
+                }
+            }
+            return allMessages;
+        }
+        public List<Utilisateur> GetAllCandidats()
+        {
+            List<Utilisateur> lesCandidats = new List<Utilisateur>();
+            foreach(Utilisateur u in lesUtilisateurs)
+            {
+                if(u.RoleUtilisateur == "candidat")
+                {
+                    lesCandidats.Add(u);
+                }
+            }
+            return lesCandidats;
+        }
     }
 }

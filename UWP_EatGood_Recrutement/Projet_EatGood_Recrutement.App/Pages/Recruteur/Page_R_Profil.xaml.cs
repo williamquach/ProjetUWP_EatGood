@@ -137,6 +137,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
 
         private void BtnMesMessages_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(Page_R_Messages), lesDonnees);
 
         }
 

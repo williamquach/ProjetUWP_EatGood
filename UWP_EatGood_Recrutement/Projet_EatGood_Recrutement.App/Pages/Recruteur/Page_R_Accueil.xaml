@@ -52,8 +52,8 @@
             <Button Grid.Column="1" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
                     Foreground="#0f2459" Background="#FF9D99D7" Click="BtnProfil_Click" VerticalAlignment="Center" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
-            <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
-                    Foreground="#0f2459" Background="#FFDDAC7B"  BorderBrush="Black"
+            <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Les messages" HorizontalAlignment="Center" BorderThickness="0.8"
+                    Foreground="#0f2459" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black" 
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
                     Foreground="#0f2459" Background="#FFEE9696"  BorderBrush="Black" BorderThickness="0.8"

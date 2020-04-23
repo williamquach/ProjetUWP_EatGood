@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="120"></RowDefinition>
             <RowDefinition Height="85"></RowDefinition>
-            <RowDefinition Height="707*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -52,11 +52,11 @@
             <Button Grid.Column="1" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
                         Foreground="#0f2459" Background="#FF9D99D7" Click="BtnProfil_Click" VerticalAlignment="Center" BorderThickness="0.8"
                         FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
-            <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Mes messages" HorizontalAlignment="Center" BorderThickness="0.8"
+            <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Les messages" HorizontalAlignment="Center" BorderThickness="0.8"
                         Foreground="#FFF" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
                         FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
             <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
-                        Foreground="#0f2459" Background="#FFEE9696" Click="BtnNvelleCandidature_Click" BorderBrush="Black" BorderThickness="0.8"
+                        Foreground="#0f2459" Background="#FFEE9696" BorderBrush="Black" BorderThickness="0.8"
                         FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="4" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
                         Foreground="#0f2459" Background="#FFCAB6B6" Click="BtnDeconnexion_Click" BorderBrush="Black"
@@ -77,25 +77,33 @@
             </TextBlock>
             <Grid Grid.Row="1" Grid.ColumnSpan="2" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="4*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.8*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="240"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border Background="#5de29c" Grid.ColumnSpan="5"></Border>
+                <!--IdMessage = Convert.ToInt32(item["idM"].Value.ToString()),
+                        ContenuMessage = item["message"].Value.ToString(),
+                        LExpediteur = leResto,
+                        LeDestinataire = lUtilisateur,
+                        StatutMessage = item["statutMsg"].Value.ToString()-->
                 <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
-                           Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="1" Text="Contenu du message :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                           Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" Margin="10,0,0,0"></TextBlock>
+                <TextBlock Grid.Column="1" Text="Candidat :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
                 <TextBlock Grid.Column="2" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+                <TextBlock Grid.Column="3" Text="Contenu du message :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
+                           Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
 
                 <Border Grid.Row="1" Background="#0f2459" Grid.RowSpan="6" Grid.ColumnSpan="6"></Border>
-                <TextBlock Text="Vous n'avez aucun message :(" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
+                <TextBlock Text="Il n'y a aucun message" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
                            FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
                            Grid.Row="1" x:Name="txtYatilDesMessages" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,30,0,0"></TextBlock>
 
@@ -105,36 +113,112 @@
                         <DataTemplate>
                             <StackPanel  BorderBrush="Gray" BorderThickness="0.8"  Orientation="Horizontal" 
                                          Spacing="50" Width="Auto" MinHeight="50">
-                                <!--public int IdMessage { get; set; }
-                            public string ContenuMessage { get; set; }
-                            public int StatutMessage { get; set; }
-                            public Utilisateur LeDestinataire{ get; set; }
-                            public Restaurant LExpediteur { get; set; }-->
+                                <!--
+                                public Restaurant LExpediteur { get; set; }
+                                public Utilisateur LeDestinataire{ get; set; }
+                                public int StatutMessage { get; set; }
+                                public string ContenuMessage { get; set; }
+                            -->
 
                                 <TextBlock Text="{Binding LExpediteur.LibelleResto}" Width="250" Foreground="White" TextAlignment="Justify"
-                                       TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
-                                <Border  Width="900"  VerticalAlignment="Center">
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                <TextBlock Text="{Binding LeDestinataire.FullName}" Width="220" Foreground="White" TextAlignment="Justify"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                <TextBlock Text="{Binding StatutMessage}" Width="150" Foreground="White" TextAlignment="Justify"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Century Gothic"></TextBlock>
+                                <Border  Width="730"  VerticalAlignment="Center">
                                     <TextBlock Text="{Binding ContenuMessage}" TextAlignment="Justify"
-                                               Foreground="White" TextWrapping="Wrap"></TextBlock>
+                                               Foreground="White" TextWrapping="Wrap" FontFamily="Century Gothic"></TextBlock>
                                 </Border>
-                                <TextBlock Text="{Binding StatutMessage}" Width="250"  VerticalAlignment="Center" HorizontalAlignment="Right"
-                                           FontWeight="Bold" Foreground="White" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Orientation="Horizontal" BorderBrush="Gray" BorderThickness="1">
-                    <Button x:Name="btnChangerEtat" HorizontalAlignment="Center"
-                         FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" 
-                        Click="btnChangerEtat_Click"
-                        BorderBrush="#0f2459" BorderThickness="1.2">&#xE8BD;</Button>
-                    <Button x:Name="btnSupprimer" HorizontalAlignment="Center"
-                         FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#FF99D7B7" Foreground="#0f2459" 
-                        Click="btnSupprimer_Click"
-                        BorderBrush="#0f2459" BorderThickness="1.2">&#xE74D;</Button>
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Orientation="Horizontal" Spacing="10" Background="#5de29c">
+                    <Button Content="Supprimer un message envoyé "  Background="#5de29c"
+                            BorderBrush="#FF7FC86E" BorderThickness="0.5" FontFamily="Century Gothic" FontSize="20"
+                            FontWeight="Black" x:Name="btnSupprimerMessageEnvoye" Click="btnSupprimerMessageEnvoye_Click">
+                    </Button>
                 </StackPanel>
+                <Grid Grid.Row="3" Grid.ColumnSpan="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300*"></ColumnDefinition>
+                        <ColumnDefinition Width="300*"></ColumnDefinition>
+                        <ColumnDefinition Width="500*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Spacing="10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Height="Auto" >
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Content="Créer un message"  Background="#5de29c"
+                            BorderBrush="#FF7FC86E" BorderThickness="0.5" FontFamily="Century Gothic" FontSize="20"
+                            FontWeight="Black" x:Name="btnCreerUnMessage" Click="btnCreerUnMessage_Click"></Button>
+                        <ComboBox x:Name="cboMessages"  Width="400" PlaceholderText="Choisissez un message..."
+                               Background="#FFF" FontFamily="Century Gothic" FontSize="20">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Spacing="10" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding IdMessage}" Foreground="#0f2459"></TextBlock>
+                                        <TextBlock Text="{Binding ContenuMessage}" Foreground="#0f2459" TextWrapping="Wrap"
+                                                   Height="70" Width="1400" TextAlignment="Justify"
+                                                   ></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Content="Supprimer un message"  Background="#5de29c"
+                            BorderBrush="#FF7FC86E" BorderThickness="0.5" FontFamily="Century Gothic" FontSize="20"
+                            FontWeight="Black" x:Name="btnSupprimerUnMessage" Click="btnSupprimerUnMessage_Click"></Button>
+                    </StackPanel>
+                    <StackPanel Spacing="10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Height="Auto"  Grid.Column="1" Grid.Row="0">
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Content="Ajouter un restaurant"  Background="#5de29c"
+                            BorderBrush="#FF7FC86E" BorderThickness="0.5" FontFamily="Century Gothic" FontSize="20"
+                            FontWeight="Black" x:Name="btnCreerUnResto" Click="btnCreerUnResto_Click"></Button>
+                        <ComboBox x:Name="cboResto" Width="400" Height="Auto"
+                                    PlaceholderText="Choisissez un restaurant" Background="#FFF"
+                                  FontFamily="Century Gothic" FontSize="20" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Spacing="10" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding LibelleResto}" Foreground="#0f2459"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Content="Retirer un restaurant"  Background="#5de29c"
+                            BorderBrush="#FF7FC86E" BorderThickness="0.5" FontFamily="Century Gothic" FontSize="20"
+                            FontWeight="Black" x:Name="btnRetirerUnResto" Click="btnRetirerUnResto_Click"></Button>
+                    </StackPanel>
+                    
+                    <ListView x:Name="lvMsgAuxCandidats" HorizontalAlignment="Center" Width="600" Height="Auto"
+                              Grid.Column="3" Grid.Row="0" SelectionMode="Multiple"
+                              Foreground="White" Background="#FFF">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Spacing="10" Orientation="Horizontal" Height="Auto">
+                                    <TextBlock Text="{Binding IdUtilisateur}" Foreground="#0f2459" 
+                                               Width="Auto" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                    <TextBlock Text="{Binding FullName}" Foreground="#0f2459" 
+                                               Width="100" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                    <TextBlock Text="{Binding DescriptionCandidat}" Foreground="#0f2459" TextWrapping="Wrap"
+                                               Height="200" Width="400" TextAlignment="Justify"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                            Content="Envoyer le message au(x) candidat(s)"  Background="#5de29c"
+                            BorderBrush="#FF7FC86E" BorderThickness="0.5" FontFamily="Century Gothic" FontSize="20"
+                            FontWeight="Black" x:Name="btnEnvoyerMsg" Click="btnEnvoyerMsg_Click" Margin="129,0,0,0"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

@@ -97,7 +97,6 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                 await message.ShowAsync();
             }
         }
-
         private async void btnStatutRefuser_Click(object sender, RoutedEventArgs e)
         {
             if (lvCandidatures.SelectedItem != null)
@@ -136,7 +135,6 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                 await message.ShowAsync();
             }
         }
-
         private async void btnStatutAccepter_Click(object sender, RoutedEventArgs e)
         {
             if (lvCandidatures.SelectedItem != null)
@@ -355,27 +353,26 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                 await Task.WhenAll(SetMessageCandidature(laCandidChoisie, "En cours"));
             }
         }
-
         private void lvCandidatures_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
         }
-
         private void BtnDeconnexion_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
 
         }
-
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_R_Profil), lesDonnees);
         }
-
         private void BtnMesMessages_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_R_Messages), lesDonnees);
-
+        }
+        private void BtnBackOffice_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
         }
     }
 }

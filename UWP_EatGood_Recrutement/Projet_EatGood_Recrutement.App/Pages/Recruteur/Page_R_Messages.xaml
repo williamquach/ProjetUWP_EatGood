@@ -55,8 +55,8 @@
             <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Les messages" HorizontalAlignment="Center" BorderThickness="0.8"
                         Foreground="#FFF" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
                         FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
-            <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
-                        Foreground="#0f2459" Background="#FFEE9696" BorderBrush="Black" BorderThickness="0.8"
+            <Button Grid.Column="3" x:Name="BtnBackOffice" Content="Back office" HorizontalAlignment="Center"
+                        Foreground="#0f2459" Background="#FFEE9696" Click="BtnBackOffice_Click"  BorderBrush="Black" BorderThickness="0.8"
                         FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="4" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
                         Foreground="#0f2459" Background="#FFCAB6B6" Click="BtnDeconnexion_Click" BorderBrush="Black"
@@ -96,8 +96,6 @@
                 <TextBlock Grid.Column="0" Text="Restaurant :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" Margin="10,0,0,0"></TextBlock>
                 <TextBlock Grid.Column="1" Text="Candidat :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
-                           Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
-                <TextBlock Grid.Column="2" Text="Statut :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>
                 <TextBlock Grid.Column="3" Text="Contenu du message :" FontSize="25" FontFamily="Arial Rounded MT Bold" TextDecorations="Underline" Foreground="#0f2459"
                            Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"></TextBlock>

@@ -1,0 +1,172 @@
+﻿<Page
+    x:Class="Projet_EatGood_Recrutement.App.Pages.Recruteur.Page_R_Backoffice"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Projet_EatGood_Recrutement.App.Pages.Recruteur"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="85"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- 1ere ligne : Logo et Bienvenue -->
+        <Grid x:Name="grd_PremiereLigne">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="160"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Background="#5de29c" Grid.Column="0" Grid.ColumnSpan="2"></Border>
+            <Image Grid.Column="0" x:Name="img_fastFood_accueil" Source="../../images/5_image_fastfood.jpg"></Image>
+            <TextBlock Grid.Column="1" Text="Bienvenue..." VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Foreground="#0f2459" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
+                           FontSize="50" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
+            <Image Grid.Column="2" x:Name="img_fastFood_accueil_2" Source="../../images/2_image_fastfood.jpg"></Image>
+
+        </Grid>
+        <!-- 2e ligne : Profil, Messages et Nouvelle Candidature -->
+        <Grid x:Name="grd_DeuxiemeLigne" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--<Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="0" Background="#FF9D99D7"></Border>
+                <Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="1" Background="#FFDDAC7B"></Border>
+                <Border BorderBrush="#0f2459" BorderThickness="1" Grid.Column="2" Background="#FFEE9696"></Border>-->
+            <Button Grid.Column="0" x:Name="BtnAccueil" Content="Accueil" HorizontalAlignment="Center" BorderBrush="Black"
+                        Foreground="#0f2459" Background="#FF76F7F9" Click="BtnAccueil_Click" VerticalAlignment="Center" BorderThickness="0.8"
+                        FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
+            <Button Grid.Column="1" x:Name="BtnProfil" Content="Profil" HorizontalAlignment="Center" BorderBrush="Black"
+                        Foreground="#0f2459" Background="#FF9D99D7" Click="BtnProfil_Click" VerticalAlignment="Center" BorderThickness="0.8"
+                        FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+            <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Les messages" HorizontalAlignment="Center" BorderThickness="0.8"
+                        Foreground="Black" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
+                        FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+            <Button Grid.Column="3" x:Name="BtnBackOffice" Content="Back office" HorizontalAlignment="Center"
+                        Foreground="#FFF" Background="#FFEE9696" Click="BtnBackOffice_Click"  BorderBrush="Black" BorderThickness="0.8"
+                        FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="84" Width="300"/>
+            <Button Grid.Column="4" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
+                        Foreground="#0f2459" Background="#FFCAB6B6" Click="BtnDeconnexion_Click" BorderBrush="Black"
+                        FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300" />
+        </Grid>
+        <!-- 3e ligne : Le Back office -->
+        <Grid x:Name="grd_TroisiemeLigne" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="1"></ColumnDefinition>
+                <ColumnDefinition Width="0.55*"/>
+                <ColumnDefinition Width="1"></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Background="#0f2459" Grid.ColumnSpan="5" Grid.RowSpan="2"></Border>
+            <Border Background="#FFF" Grid.Column="1" Grid.RowSpan="2"></Border>
+            <Border Background="#FFF" Grid.Column="3" Grid.RowSpan="2"></Border>
+            <TextBlock Text="Utilisateurs :" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="White" Grid.Column="0">
+            </TextBlock>
+            <TextBlock Text="Postes :" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="White" Grid.Column="2">
+            </TextBlock>
+            <TextBlock Text="Nécessités de postes :" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="White" Grid.Column="4">
+            </TextBlock>
+
+            <!--Back office : ligne 2 (après UTILISATEURS POSTES NECESSITES DE POSTES)-->
+            <!--Colonne utilisateurs-->
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--Liste des utilisateurs-->
+                <ListView x:Name="lvUtilisateurs">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding FullName}" Width="170" Foreground="White" TextAlignment="Justify" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                <TextBlock Text="{Binding RoleUtilisateur}" Width="150" Foreground="White" TextAlignment="Justify" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                <TextBlock Text="{Binding VilleCandidat}" Width="Auto" Foreground="White" TextAlignment="Justify" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--Bouton supprimer utilisateur-->
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Supprimer l'utilisateur" 
+                        Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
+                        FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
+                        x:Name="BtnSupprimerUtilisateur" Click="BtnSupprimerUtilisateur_Click"
+                        Grid.Column="0" Grid.Row="1"></Button>
+                <!--Bouton modifier un utilisateur-->
+                <Button HorizontalAlignment="Center" VerticalAlignment="Top" Content="Modifier le statut de cet utilisateur" 
+                        Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
+                        FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
+                        x:Name="BtnModifierStatut" Click="BtnModifierStatut_Click"
+                        Grid.Column="0" Grid.Row="2"></Button>
+            </Grid>
+            <!--Colonne Postes-->
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--Liste des utilisateurs-->
+                <ListView x:Name="lvPostes">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding IdPoste}" Width="50" Foreground="White" TextAlignment="Justify" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                <TextBlock Text="{Binding LibellePoste}" Width="Auto" Foreground="White" TextAlignment="Justify" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--Bouton Ajouter un poste-->
+                <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Ajouter un poste" 
+                        Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
+                        FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
+                        x:Name="BtnAjouterPoste" Click="BtnAjouterPoste_Click"
+                        Grid.Column="0" Grid.Row="1"></Button>
+                <!--Bouton supprimer utilisateur-->
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Supprimer ce poste" 
+                        Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
+                        FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
+                        x:Name="BtnSupprimerPoste" Click="BtnSupprimerPoste_Click"
+                        Grid.Column="0" Grid.Row="2"></Button>
+                <Button HorizontalAlignment="Center" VerticalAlignment="Top" Content="Modifier ce poste" 
+                        Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
+                        FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
+                        x:Name="BtnModifierPoste" Click="BtnModifierPoste_Click"
+                        Grid.Column="0" Grid.Row="3"></Button>
+            </Grid>
+            <!--Colonne Nécessités-->
+            <Grid Grid.Row="1" Grid.Column="2">
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

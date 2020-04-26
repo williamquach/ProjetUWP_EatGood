@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
 using Projet_EatGood_Recrutement.App.API;
-using Projet_EatGood_Recrutement.App.Pages.Candidat;
 using Projet_EatGood_Recrutement.Classes;
 using System.Net.Http;
 using Windows.UI.Popups;
@@ -39,11 +38,11 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
             {
                 lesDonnees = e.Parameter as Data_EatGood;
                 lutilisateurActuellement = lesDonnees.LUtilisateurDeMaintenant;
-                txtBienvenue.Text = $"Voici tes messages {lutilisateurActuellement.PrenomUtilisateur} {lutilisateurActuellement.NomUtilisateur}";
+                txtBienvenue.Text = $"Voici les messages {lutilisateurActuellement.PrenomUtilisateur} {lutilisateurActuellement.NomUtilisateur}";
             }
             else
             {
-                txtBienvenue.Text = $"Voici tes messages ! ";
+                txtBienvenue.Text = $"Voici les messages ! ";
             }
             base.OnNavigatedTo(e);
         }
@@ -302,24 +301,20 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
             this.Frame.Navigate(typeof(Page_R_Accueil), lesDonnees);
 
         }
-
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_R_Profil), lesDonnees);
 
         }
-
         private void BtnMesMessages_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_R_Messages), lesDonnees);
 
         }
-
         private void BtnDeconnexion_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
-
         private async void btnCreerUnResto_Click(object sender, RoutedEventArgs e)
         {
             string libelleResto = "";
@@ -498,7 +493,6 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                 return text;
             }
         }
-
         private async void btnRetirerUnResto_Click(object sender, RoutedEventArgs e)
         {
             if(cboResto.SelectedItem == null)
@@ -541,6 +535,10 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                     }
                 }
             }
+        }
+        private void BtnBackOffice_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
         }
     }
 }

@@ -141,6 +141,9 @@
     <Compile Include="Pages\Recruteur\Page_R_Accueil.xaml.cs">
       <DependentUpon>Page_R_Accueil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Recruteur\Page_R_Backoffice.xaml.cs">
+      <DependentUpon>Page_R_Backoffice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Recruteur\Page_R_Messages.xaml.cs">
       <DependentUpon>Page_R_Messages.xaml</DependentUpon>
     </Compile>
@@ -199,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Recruteur\Page_R_Accueil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Recruteur\Page_R_Backoffice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

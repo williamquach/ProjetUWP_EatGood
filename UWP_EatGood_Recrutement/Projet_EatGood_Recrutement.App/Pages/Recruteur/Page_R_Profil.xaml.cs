@@ -126,24 +126,22 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
         private void BtnAccueil_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_R_Accueil), lesDonnees);
-
         }
-
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_R_Profil), lesDonnees);
-
         }
-
         private void BtnMesMessages_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page_R_Messages), lesDonnees);
-
         }
-
         private void BtnDeconnexion_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
+        }
+        private void BtnBackOffice_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
         }
     }
 }

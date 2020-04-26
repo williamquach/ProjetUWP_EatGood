@@ -34,7 +34,7 @@
 
         </Grid>
 
-        <!-- 2e ligne : Profil, Messages et Nouvelle Candidature -->
+        <!-- 2e ligne : Accueil Profil, Messages et Back office -->
         <Grid x:Name="grd_DeuxiemeLigne" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -52,14 +52,14 @@
             <Button Grid.Column="2" x:Name="BtnMesMessages" Content="Les messages" HorizontalAlignment="Center" BorderThickness="0.8"
                     Foreground="#0f2459" Background="#FFDDAC7B" Click="BtnMesMessages_Click" BorderBrush="Black"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
-            <Button Grid.Column="3" x:Name="BtnNvelleCandidature" Content="Nouvelle candidature" HorizontalAlignment="Center"
+            <Button Grid.Column="3" x:Name="BtnBackOffice" Content="Back office" HorizontalAlignment="Center"
                     Foreground="#0f2459" Background="#FFEE9696" BorderBrush="Black" BorderThickness="0.8"
-                    FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300"/>
+                    FontSize="25" FontFamily="Arial Rounded MT Bold" Click="BtnBackOffice_Click" FontWeight="Bold" Height="84" Width="300"/>
             <Button Grid.Column="4" x:Name="BtnDeconnexion" Content="Se déconnecter" HorizontalAlignment="Right" BorderThickness="0.8"
                     Foreground="#0f2459" Background="#FFCAB6B6" Click="BtnDeconnexion_Click" BorderBrush="Black"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" Height="84" Width="300" />
         </Grid>
-        <!-- 3e ligne : Toutes les candidatures -->
+        <!-- 3e ligne : modification profil -->
         <Grid x:Name="grd_TroisiemeLigne" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"></RowDefinition>

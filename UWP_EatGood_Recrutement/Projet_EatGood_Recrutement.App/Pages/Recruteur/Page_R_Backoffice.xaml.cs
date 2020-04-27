@@ -55,6 +55,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
             lvUtilisateurs.ItemsSource = lesDonnees.lesUtilisateurs;
             lvPostes.ItemsSource = lesDonnees.lesPostes;
         }
+
         private async Task<string> InputTextDialogAsync(string title)
         {
             TextBox inputTextBox = new TextBox();
@@ -70,9 +71,6 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
             dialog.IsSecondaryButtonEnabled = true;
             dialog.PrimaryButtonText = "Valider";
             dialog.SecondaryButtonText = "Annuler";
-            // Ici nous allon gérer 4 cas : 
-            // L'utilisateur a cliqué sur Valider => on renvoie la valeur à l'interieur du textbox"
-            // L'utilisateur a cliqué sur Annuler, il faut renvoyer ce qu'il yavait avant
             if (await dialog.ShowAsync() == ContentDialogResult.Primary)
                 return inputTextBox.Text;
             else
@@ -244,19 +242,146 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
             }
         }
 
-        private void BtnAjouterPoste_Click(object sender, RoutedEventArgs e)
+        private async void BtnAjouterPoste_Click(object sender, RoutedEventArgs e)
         {
+            string nouveauPoste = await InputTextDialogAsync("Nouveau poste");
+            if(nouveauPoste == "")
+            {
+                var message = new MessageDialog("Vous devez rentrer un nom de poste.");
+                await message.ShowAsync();
+                BtnAjouterPoste_Click(sender, e);
+            }
+            else if (nouveauPoste != "annuler")
+            {
+                ContentDialog newPosteDialog = new ContentDialog
+                {
+                    Title = "Attention !",
+                    Content = "Vous vous apprêtez à ajouter un nouveau poste ? Êtes-vous sûr d'effectuer cette action ? ",
+                    PrimaryButtonText = "Oui",
+                    CloseButtonText = "Non"
+                };
 
+                ContentDialogResult result = await newPosteDialog.ShowAsync();
+                // Ajoute un poste si l'utilisateur a cliqué sur le bouton principal ("oui")
+                // Sinon, rien faire.
+                if (result == ContentDialogResult.Primary)
+                {
+                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_recruteur.php?" +
+                                                          "action=createPoste" +
+                                                          "&libellePoste=" + nouveauPoste);
+                    var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                    var resultat = donneesJson["Success"];
+                    if (resultat == "true")
+                    {
+                        var message = new MessageDialog("Poste ajouté.");
+                        await message.ShowAsync();
+                        await lesDonnees.ChargerLesDonnees();
+                        this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
+                    }
+                    else if (resultat == "false")
+                    {
+                        var message = new MessageDialog("Impossible d'ajouter un poste. Bug");
+                        await message.ShowAsync();
+                    }
+                }
+            }
         }
 
-        private void BtnSupprimerPoste_Click(object sender, RoutedEventArgs e)
+        private async void BtnSupprimerPoste_Click(object sender, RoutedEventArgs e)
         {
+            if(lvPostes.SelectedItem == null)
+            {
+                var message = new MessageDialog("Il faut choisir un poste pour pouvoir en supprimer un !");
+                await message.ShowAsync();
+            }
+            else
+            {
+                ContentDialog DeletePosteDialog = new ContentDialog
+                {
+                    Title = "Attention !",
+                    Content = "Vous vous apprêtez à supprimer un poste ? Êtes-vous sûr d'effectuer cette action ? ",
+                    PrimaryButtonText = "Oui",
+                    CloseButtonText = "Non"
+                };
 
+                ContentDialogResult result = await DeletePosteDialog.ShowAsync();
+                // Ajoute un poste si l'utilisateur a cliqué sur le bouton principal ("oui")
+                // Sinon, rien faire.
+                if (result == ContentDialogResult.Primary)
+                {
+                    Poste lePoste = (lvPostes.SelectedItem as Poste);
+                    string idPoste = lePoste.IdPoste.ToString();
+                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_recruteur.php?" +
+                                                          "action=deletePoste" +
+                                                          "&idPoste=" + idPoste);
+                    var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                    var resultat = donneesJson["Success"];
+                    if (resultat == "true")
+                    {
+                        var message = new MessageDialog("Poste supprimé : '"+ lePoste.LibellePoste +"'.");
+                        await message.ShowAsync();
+                        await lesDonnees.ChargerLesDonnees();
+                        this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
+                    }
+                    else if (resultat == "false")
+                    {
+                        var message = new MessageDialog("Impossible de supprimer ce poste. Bug");
+                        await message.ShowAsync();
+                    }
+                }
+            }
         }
 
-        private void BtnModifierPoste_Click(object sender, RoutedEventArgs e)
+        private async void BtnModifierPoste_Click(object sender, RoutedEventArgs e)
         {
+            if (lvPostes.SelectedItem == null)
+            {
+                var message = new MessageDialog("Il faut choisir un poste pour pouvoir en modifier un !");
+                await message.ShowAsync();
+            }
+            else
+            {
+                string nouveauLibellePoste = await InputTextDialogAsync("Nouveau poste");
+                if(nouveauLibellePoste == "")
+                {
+                    var message = new MessageDialog("Veuillez remplir le champs !");
+                    await message.ShowAsync();
+                    BtnModifierPoste_Click(sender, e);
+                }
+                ContentDialog DeletePosteDialog = new ContentDialog
+                {
+                    Title = "Attention !",
+                    Content = "Vous vous apprêtez à supprimer un poste ? Êtes-vous sûr d'effectuer cette action ? ",
+                    PrimaryButtonText = "Oui",
+                    CloseButtonText = "Non"
+                };
 
+                ContentDialogResult result = await DeletePosteDialog.ShowAsync();
+                // Ajoute un poste si l'utilisateur a cliqué sur le bouton principal ("oui")
+                // Sinon, rien faire.
+                if (result == ContentDialogResult.Primary)
+                {
+                    Poste lePoste = (lvPostes.SelectedItem as Poste);
+                    string idPoste = lePoste.IdPoste.ToString();
+                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_recruteur.php?" +
+                                                          "action=deletePoste" +
+                                                          "&idPoste=" + idPoste);
+                    var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                    var resultat = donneesJson["Success"];
+                    if (resultat == "true")
+                    {
+                        var message = new MessageDialog("Poste supprimé : '" + lePoste.LibellePoste + "'.");
+                        await message.ShowAsync();
+                        await lesDonnees.ChargerLesDonnees();
+                        this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
+                    }
+                    else if (resultat == "false")
+                    {
+                        var message = new MessageDialog("Impossible de supprimer ce poste. Bug");
+                        await message.ShowAsync();
+                    }
+                }
+            }
         }
     }
 }

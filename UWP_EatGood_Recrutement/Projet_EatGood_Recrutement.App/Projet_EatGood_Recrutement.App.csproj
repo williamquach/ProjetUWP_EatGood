@@ -158,11 +158,17 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\10_image_fastfood.jpg" />
+    <Content Include="images\11_image_fastfood.jpg" />
     <Content Include="images\1_image_connexion_fastfood.jpg" />
     <Content Include="images\2_image_fastfood.jpg" />
     <Content Include="images\3_image_fastfood.jpg" />
     <Content Include="images\4_image_fastfood.jpg" />
     <Content Include="images\5_image_fastfood.jpg" />
+    <Content Include="images\6_image_fastfood.jpg" />
+    <Content Include="images\7_image_fastfood.jpg" />
+    <Content Include="images\8_image_fastfood.jpg" />
+    <Content Include="images\9_image_fastfood.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

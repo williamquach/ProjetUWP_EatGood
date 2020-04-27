@@ -112,7 +112,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 Candidature laCandidChoisie = lvCandidaturesCandidat.SelectedItem as Candidature;
                 Restaurant leRestoChoisi = laCandidChoisie.LeResto;
                 Poste lePosteChoisi = laCandidChoisie.LePosteVoulu;
-                if (laCandidChoisie.StatutMessage == "En attente")
+                if (laCandidChoisie.StatutMessage == "En attente" || laCandidChoisie.StatutMessage == "Refusée")
                 {
                     ContentDialog DeleteCandidatureDialog = new ContentDialog
                     {
@@ -153,7 +153,7 @@ namespace Projet_EatGood_Recrutement.App.Pages
                 }
                 else
                 {
-                    var message = new MessageDialog("! Vous ne pouvez pas supprimer cette candidature car le choix du recruteur est déjà en cours ou établi !");
+                    var message = new MessageDialog("! Vous ne pouvez pas supprimer cette candidature car le choix du recruteur est déjà en cours ou celle-ci est acceptée !");
                     await message.ShowAsync();
                 }
             }

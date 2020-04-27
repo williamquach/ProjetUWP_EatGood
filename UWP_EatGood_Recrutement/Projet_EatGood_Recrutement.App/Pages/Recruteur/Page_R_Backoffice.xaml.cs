@@ -348,37 +348,41 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                     await message.ShowAsync();
                     BtnModifierPoste_Click(sender, e);
                 }
-                ContentDialog DeletePosteDialog = new ContentDialog
+                else if(nouveauLibellePoste != "annuler")
                 {
-                    Title = "Attention !",
-                    Content = "Vous vous apprêtez à supprimer un poste ? Êtes-vous sûr d'effectuer cette action ? ",
-                    PrimaryButtonText = "Oui",
-                    CloseButtonText = "Non"
-                };
+                    ContentDialog DeletePosteDialog = new ContentDialog
+                    {
+                        Title = "Attention !",
+                        Content = "Vous vous apprêtez à modifier le nom d'un poste ? Êtes-vous sûr d'effectuer cette action ? ",
+                        PrimaryButtonText = "Oui",
+                        CloseButtonText = "Non"
+                    };
 
-                ContentDialogResult result = await DeletePosteDialog.ShowAsync();
-                // Ajoute un poste si l'utilisateur a cliqué sur le bouton principal ("oui")
-                // Sinon, rien faire.
-                if (result == ContentDialogResult.Primary)
-                {
-                    Poste lePoste = (lvPostes.SelectedItem as Poste);
-                    string idPoste = lePoste.IdPoste.ToString();
-                    var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_recruteur.php?" +
-                                                          "action=deletePoste" +
-                                                          "&idPoste=" + idPoste);
-                    var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
-                    var resultat = donneesJson["Success"];
-                    if (resultat == "true")
+                    ContentDialogResult result = await DeletePosteDialog.ShowAsync();
+                    // Modifie un poste si l'utilisateur a cliqué sur le bouton principal ("oui")
+                    // Sinon, rien faire.
+                    if (result == ContentDialogResult.Primary)
                     {
-                        var message = new MessageDialog("Poste supprimé : '" + lePoste.LibellePoste + "'.");
-                        await message.ShowAsync();
-                        await lesDonnees.ChargerLesDonnees();
-                        this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
-                    }
-                    else if (resultat == "false")
-                    {
-                        var message = new MessageDialog("Impossible de supprimer ce poste. Bug");
-                        await message.ShowAsync();
+                        Poste lePoste = (lvPostes.SelectedItem as Poste);
+                        string idPoste = lePoste.IdPoste.ToString();
+                        var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/index_recruteur.php?" +
+                                                              "action=updatePoste" +
+                                                              "&idPoste=" + idPoste +
+                                                              "&new_libelle=" + nouveauLibellePoste);
+                        var donneesJson = JsonConvert.DeserializeObject<dynamic>(reponse);
+                        var resultat = donneesJson["Success"];
+                        if (resultat == "true")
+                        {
+                            var message = new MessageDialog("Poste modifié : '"+ lePoste.LibellePoste +"' à '" + nouveauLibellePoste + "'.");
+                            await message.ShowAsync();
+                            await lesDonnees.ChargerLesDonnees();
+                            this.Frame.Navigate(typeof(Page_R_Backoffice), lesDonnees);
+                        }
+                        else if (resultat == "false")
+                        {
+                            var message = new MessageDialog("Impossible de modifier ce poste. Bug");
+                            await message.ShowAsync();
+                        }
                     }
                 }
             }

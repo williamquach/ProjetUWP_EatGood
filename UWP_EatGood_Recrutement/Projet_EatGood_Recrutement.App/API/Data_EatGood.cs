@@ -18,6 +18,7 @@ namespace Projet_EatGood_Recrutement.App.API
         public List<Restaurant> lesResto { get; set; }
         public List<Poste> lesPostes { get; set; }
         public List<Candidature> AllCandidatures { get; set; }
+        public List<Necessites> lesNecessites { get; set; }
 
         HttpClient hc;
         HttpClient hc2;
@@ -325,6 +326,32 @@ namespace Projet_EatGood_Recrutement.App.API
             }
             return allMessages;
         }
+
+        public async Task GetAllNecessites()
+        {
+            lesNecessites = new List<Necessites>();
+            //http://localhost/recru_eatgood_api/getAllNecessites.php
+            var reponse = await hc.GetStringAsync("http://localhost/recru_eatgood_api/getAllNecessites.php");
+            var donnees = JsonConvert.DeserializeObject<dynamic>(reponse);
+            var list = donnees["results"]["necessiter"];
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    Restaurant leResto = GetUnRestoById(Convert.ToInt32(item["codeRestaurant"].Value.ToString()));
+                    Poste lePoste = GetUnPosteById(Convert.ToInt32(item["codePoste"].Value.ToString()));
+                    // codePoste codeRestaurant quantite
+                    Necessites uneNecessite = new Necessites()
+                    {
+                        LePoste = lePoste,
+                        LeResto = leResto,
+                        LaQuantite = Convert.ToInt32(item["quantite"].Value.ToString())
+                    };
+
+                    lesNecessites.Add(uneNecessite);
+                }
+            }
+        }
         public List<Utilisateur> GetAllCandidats()
         {
             List<Utilisateur> lesCandidats = new List<Utilisateur>();
@@ -336,6 +363,19 @@ namespace Projet_EatGood_Recrutement.App.API
                 }
             }
             return lesCandidats;
+        }
+
+        public List<Necessites> GetNecessitesByResto(Restaurant leRestoChoisi)
+        {
+            List<Necessites> lesNecessitesDuResto = new List<Necessites>();
+            foreach(Necessites n in lesNecessites)
+            {
+                if(n.LeResto.IdResto == leRestoChoisi.IdResto)
+                {
+                    lesNecessitesDuResto.Add(n);
+                }
+            }
+            return lesNecessitesDuResto;
         }
     }
 }

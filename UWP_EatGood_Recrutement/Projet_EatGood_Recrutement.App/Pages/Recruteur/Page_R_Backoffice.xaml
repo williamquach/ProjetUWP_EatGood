@@ -121,7 +121,7 @@
                         x:Name="BtnSupprimerUtilisateur" Click="BtnSupprimerUtilisateur_Click"
                         Grid.Column="0" Grid.Row="1"></Button>
                 <!--Bouton modifier un utilisateur-->
-                <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Modifier le statut de cet utilisateur" 
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Modifier le role de cet utilisateur" 
                         Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
                         FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
                         x:Name="BtnModifierStatut" Click="BtnModifierStatut_Click"
@@ -167,8 +167,95 @@
                         Grid.Column="0" Grid.Row="3"></Button>
             </Grid>
             <!--Colonne Nécessités-->
-            <Grid Grid.Row="1" Grid.Column="2">
-
+            <Grid Grid.Row="1" Grid.Column="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--1ere ligne cbo resto-->
+                <ComboBox PlaceholderText="Choisissez un restaurant..." Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Background="#FFF" FontFamily="Century Gothic" FontSize="20" x:Name="cboChoixResto" Width="500" SelectionChanged="cboChoixResto_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding LibelleResto}" Foreground="#0f2459"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+                <!--2e ligne titre liste view-->
+                <TextBlock Text="Affichage des besoins selon le restaurant : " Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Foreground="White" FontSize="24" FontWeight="SemiBold" TextDecorations="Underline" FontFamily="Century Gothic" ></TextBlock>
+               
+                <!--3e ligne list view des necessité du resto-->
+                <ListView x:Name="lvNecessites" Grid.Row="2" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="20">
+                                <TextBlock Text="{Binding LePoste.LibellePoste}" Foreground="White" 
+                                           FontFamily="Century Gothic" Width="400"></TextBlock>
+                                <TextBlock Text="{Binding LaQuantite}" Foreground="White" FontFamily="Century Gothic" ></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <!--4e ligne-->
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Modifier la quantité" 
+                        Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
+                        FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
+                        x:Name="BtnModifierQuantité" Click="BtnModifierQuantité_Click"
+                        Grid.Column="0" Grid.Row="3"></Button>
+                
+                <!--5e ligne-->
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="White" BorderThickness="0.5" Grid.ColumnSpan="2" Grid.RowSpan="2"></Border>
+                    <!--Les Postes-->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text="Choisir un poste" Foreground="White" HorizontalAlignment="Center"
+                                   FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" ></TextBlock>
+                        <ListView x:Name="lvChoixPosteChangeQte" Height="100" HorizontalAlignment="Center">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding IdPoste}" Width="50" Foreground="White" TextAlignment="Justify" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                        <TextBlock Text="{Binding LibellePoste}" Width="Auto" Foreground="White" TextAlignment="Justify" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Century Gothic"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                    <!--La quantité-->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" 
+                                Grid.Column="1" Height="100" Spacing="20">
+                        <TextBlock Text="Entrer une quantité" Foreground="White" 
+                                   FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" ></TextBlock>
+                        <TextBox PlaceholderText="Quantité" x:Name="txtQuantité" VerticalAlignment="Center"
+                                 InputScope="Number" Width="100"></TextBox>
+                        
+                    </StackPanel>
+                    <!--le bouton-->
+                    <Button HorizontalAlignment="Center" VerticalAlignment="Top" 
+                            Content="Ajout de ce besoin" Margin="0,20,0,0"
+                        Background="#5de29c" BorderBrush="#FF7FC86E" BorderThickness="0.5" 
+                        FontFamily="Century Gothic" FontSize="20" FontWeight="Black" 
+                        x:Name="BtnAjoutNecessite" Click="BtnAjoutNecessite_Click"
+                        Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"></Button>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

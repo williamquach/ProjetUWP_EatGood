@@ -349,7 +349,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
             }
             else
             {
-                string nouveauLibellePoste = await InputTextDialogAsync("Nouveau poste");
+                string nouveauLibellePoste = await InputTextDialogAsync("Modifier le nom du poste");
                 if(nouveauLibellePoste == "")
                 {
                     var message = new MessageDialog("Veuillez remplir le champs !");
@@ -440,6 +440,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                         PrimaryButtonText = "Oui",
                         CloseButtonText = "Non"
                     };
+
 
                     ContentDialogResult result = await ChangeQteNecessiteDialog.ShowAsync();
                     // Modifie une necessité si l'utilisateur a cliqué sur le bouton principal ("oui")

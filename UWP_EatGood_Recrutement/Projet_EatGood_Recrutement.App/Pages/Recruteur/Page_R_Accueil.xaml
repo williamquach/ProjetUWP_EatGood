@@ -29,7 +29,7 @@
                     BorderBrush="White"></Border>
             <Image Grid.Column="0" x:Name="img_fastFood_accueil" Source="../../images/10_image_fastfood.jpg"
                    Width="Auto" Height="Auto"></Image>
-                <TextBlock Grid.Column="1" Text="Bienvenue..." VerticalAlignment="Center" HorizontalAlignment="Center" 
+            <TextBlock Grid.Column="1" Text="Bienvenue..." VerticalAlignment="Center" HorizontalAlignment="Center" 
                        Foreground="#5de29c" FocusVisualPrimaryBrush="#FF140606" x:Name="txtBienvenue"
                        FontSize="50" FontFamily="Century Gothic" FontWeight="Bold"></TextBlock>
             <Image Grid.Column="2" x:Name="img_fastFood_accueil_2" Source="../../images/11_image_fastfood.jpg"
@@ -45,7 +45,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-         
+
             <Button Grid.Column="0" x:Name="BtnAccueil" Content="Accueil" HorizontalAlignment="Center" BorderBrush="Black"
                     Foreground="#FFF" Background="#0f2459"  VerticalAlignment="Center" BorderThickness="0.8"
                     FontSize="25" FontFamily="Arial Rounded MT Bold" FontWeight="ExtraBold" Height="85" Width="400"/>
@@ -64,6 +64,10 @@
         </Grid>
         <!-- 3e ligne : Toutes les candidatures -->
         <Grid x:Name="grd_TroisiemeLigne" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="127*"/>
+                <ColumnDefinition Width="373*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -71,11 +75,11 @@
                 <RowDefinition Height="70"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Background="#5de29c" BorderThickness="0.5" Grid.Row="0" 
-                    BorderBrush="White"></Border>
-            <TextBlock Text="Liste des candidatures :" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="#0f2459">
+                    BorderBrush="White" Grid.ColumnSpan="2"></Border>
+            <TextBlock Text="Liste des candidatures :" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0"
+                       FontFamily="Century Gothic" FontSize="40" FontWeight="Bold" Foreground="#0f2459" Grid.Column="1" Margin="142,0,0,0">
             </TextBlock>
-            <Grid Grid.Row="1" >
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="200"></ColumnDefinition>
@@ -108,13 +112,13 @@
                         BorderBrush="#0f2459" BorderThickness="1.2">&#xE74D;</Button>-->
 
             </Grid>
-            <Border Grid.Row="2" Background="#0f2459" Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
+            <Border Grid.Row="2" Background="#0f2459" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,1,0,0"></Border>
 
-            <TextBlock Text="Il n'y aucune candidature pour le moment :(" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
+            <TextBlock Text="Il n'y aucune candidature pour le moment :(" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"
                        FontSize="40" FontFamily="Century Gothic" FontWeight="Bold" Foreground="#5de29C" Visibility="Collapsed"
-                       Margin="0,50,0,0" Grid.Row="2" x:Name="txtYaTilDesCandidatures"></TextBlock>
+                       Margin="369,50,0,0" Grid.Row="2" x:Name="txtYaTilDesCandidatures" Grid.Column="1"></TextBlock>
 
-            <ListView x:Name="lvCandidatures" Grid.Row="2" Tapped="lvCandidatures_Tapped" Background="#0f2459" Visibility="Visible">
+            <ListView x:Name="lvCandidatures" Grid.Row="2" Tapped="lvCandidatures_Tapped" Background="#0f2459" Visibility="Visible" Grid.ColumnSpan="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"  Spacing="20">
@@ -136,8 +140,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Orientation="Horizontal" BorderBrush="Gray" BorderThickness="1" Spacing="10">
+            <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"
+                            Orientation="Horizontal" BorderBrush="Gray" BorderThickness="1" Spacing="10" >
                 <!--Status :-->
                 <!--
                 En attente

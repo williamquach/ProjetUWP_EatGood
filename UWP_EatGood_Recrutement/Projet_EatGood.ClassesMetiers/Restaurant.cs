@@ -13,6 +13,5 @@ namespace Projet_EatGood_Recrutement.Classes
         public string VilleResto { get; set; }
         public string CodePostalResto { get; set; }
         public string NumTelResto { get; set; }
-        public Dictionary<Poste, int> lesPostes { get; set; }
     }
 }

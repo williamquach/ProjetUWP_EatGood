@@ -125,7 +125,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                     if (ChangerLaCandid == true)
                     {
                         laCandidChoisie.StatutMessage = "Refusée";
-                        SetMessageCandidature(laCandidChoisie, "En cours");
+                        await SetMessageCandidature(laCandidChoisie, "En cours");
                     }
                 }
             }
@@ -163,7 +163,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                     if (ChangerLaCandid is true)
                     {
                         laCandidChoisie.StatutMessage = "Acceptée";
-                        SetMessageCandidature(laCandidChoisie, "En cours");
+                        await SetMessageCandidature(laCandidChoisie, "En cours");
                     }
                 }
             }
@@ -183,7 +183,7 @@ namespace Projet_EatGood_Recrutement.App.Pages.Recruteur
                 Utilisateur lutilisateur = laCandidChoisie.LeCandidat;
                 if (laCandidChoisie.StatutMessage == "En attente")
                 {
-                    var message = new MessageDialog("Vous ne pouvez pas modifier le statut d'une candidature qui n'est pas : en cours de traitement ou déjà traitée");
+                    var message = new MessageDialog("Vous ne pouvez pas modifier le message d'une candidature qui n'est pas : en cours de traitement ou déjà traitée");
                     await message.ShowAsync();
                 }
                 else
